@@ -1,0 +1,15 @@
+///////////////////////////////////////////////////////////
+//  FabriqueOffre.cpp
+//  Implementation of the Class FabriqueOffre
+//  Created on:      17-Nov-2024 2:28:22 PM
+//  Original author: Alex
+///////////////////////////////////////////////////////////
+
+#include "FabriqueOffre.h"
+
+
+
+
+
+
+
