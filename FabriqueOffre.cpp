@@ -5,8 +5,7 @@
 //  Original author: Alex
 ///////////////////////////////////////////////////////////
 
-#include "FabriqueOffre.h"
-
+#include "FabriqueOffre.hpp"
 
 
 

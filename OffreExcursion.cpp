@@ -8,29 +8,12 @@
 
 #include "OffreExcursion.hpp"
 
-namespace std {
 
-    OffreExcursion::OffreExcursion(const std::string& details, std::shared_ptr<Devise> devise, const std::string& id, const std::string& nom, double prix)
-        : Offre(details, devise, id, nom, prix) {
-    }
+OffreExcursion::OffreExcursion(std::shared_ptr<Devise> devise, const std::string& nom, double prix, const string& ville, int nbEtoiles)
+    : Offre(devise, nom, prix, "Excursion"), ville(ville), nbEtoiles(nbEtoiles) {
+        
+}
 
-    void OffreExcursion::definirDescription(const std::string& description) {
-        this->description = description;
-    }
+void OffreExcursion::reserver(const std::string& client) {
+}
 
-    void OffreExcursion::definirLieu(const std::string& lieu) {
-        this->lieu = lieu;
-    }
-
-    std::string OffreExcursion::obtenirLieu() const {
-        return lieu;
-    }
-
-    std::string OffreExcursion::obtenirDescription() const {
-        return description;
-    }
-
-    void OffreExcursion::reserver(const std::string& client) {
-    }
-
-} // namespace std

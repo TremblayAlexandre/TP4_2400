@@ -10,31 +10,10 @@
 
 namespace std {
 
-    OffreVol::OffreVol(const std::string& details, std::shared_ptr<Devise> devise, const std::string& id, const std::string& nom, double prix)
-        : Offre(details, devise, id, nom, prix), origine(""), destination(""), heureDepart(""), heureArrivee("") {}
+    OffreVol::OffreVol(std::shared_ptr<Devise> devise, const std::string& nom, const std::string& date, double prix, const std::string& origine ="", 
+        const std::string& destination="", const std::string& heureDepart="", const std::string& heureArrivee="")
+        : Offre(devise, nom, date, prix, "Transport"), origine(origine), destination(destination), heureDepart(heureDepart), heureArrivee(heureArrivee){}
 
-    void OffreVol::afficherHoraire() const {
-    }
-
-    void OffreVol::definirOrigine(const std::string& origine) {
-        this->origine = origine;
-    }
-
-    void OffreVol::definirDestination(const std::string& destination) {
-        this->destination = destination;
-    }
-
-    void OffreVol::definirHeureDepart(const std::string& heure) {
-        this->heureDepart = heure;
-    }
-
-    void OffreVol::definirHeureArrivee(const std::string& heure) {
-        this->heureArrivee = heure;
-    }
-
-    bool OffreVol::verifierDisponibilitePlaces() const {
-        return true; // todo
-    }
 
     void OffreVol::reserver(const std::string& client) {
     }

@@ -21,15 +21,16 @@ namespace std {
         std::string heureArrivee;
 
     public:
-        OffreVol(const std::string& details, std::shared_ptr<Devise> devise, const std::string& id, const std::string& nom, double prix);
-
-        void afficherHoraire() const;
-        void definirOrigine(const std::string& origine);
-        void definirDestination(const std::string& destination);
-        void definirHeureDepart(const std::string& heure);
-        void definirHeureArrivee(const std::string& heure);
-
-        bool verifierDisponibilitePlaces() const;
+        OffreVol(std::shared_ptr<Devise> devise, const std::string& nom, const std::string& date, double prix, const std::string& origine, 
+        const std::string& destination, const std::string& heureDepart, const std::string& heureArrivee);
+        void definirOrigine(const std::string& origine){this->origine = origine;};
+        void definirDestination(const std::string& destination){this->destination = destination;};
+        void definirHeureDepart(const std::string& heure){this->heureDepart = heure;};
+        void definirHeureArrivee(const std::string& heure){this->heureArrivee = heure;};
+        string obtenirOrigine(){return origine;};
+        string obtenirDestination(){return destination;};
+        string obtenirHeureDepart(){return heureDepart;};
+        string obtenirHeureArrivee(){return heureArrivee;};
         void reserver(const std::string& client) override;
     };
 

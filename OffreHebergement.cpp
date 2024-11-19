@@ -8,31 +8,13 @@
 #include "OffreHebergement.hpp"
 #include <iostream>
 
-namespace std {
 
-    OffreHebergement::OffreHebergement(const std::string& details, std::shared_ptr<Devise> devise, const std::string& id, const std::string& nom, double prix)
-        : Offre(details, devise, id, nom, prix) {
-    }
+OffreHebergement::OffreHebergement(std::shared_ptr<Devise> devise, const std::string& nom, const string& date, double prix, const string& addresse, double cote):
+Offre(devise, nom, date, prix, "Hebergement"), addresse(addresse), cote(cote) {
+}
 
-    void OffreHebergement::afficherDisponibilite() const {
-    }
+void OffreHebergement::reserver(const std::string& client) {
+}
 
-    double OffreHebergement::calculerPrixTotal(double taxe, const Devise& autreDevise) const {
-        return 0.0;
-    }
 
-    vector<string> OffreHebergement::obtenirDisponibilite() const {
-        return;
-    }
 
-    void OffreHebergement::reserver(const std::string& client) {
-    }
-    void OffreHebergement::definirAddresse(const string& addresse) {
-        this->addresse = addresse;
-    }
-
-    string OffreHebergement::obtenirAddresse() const {
-        return this->addresse;
-    }
-
-} // namespace std

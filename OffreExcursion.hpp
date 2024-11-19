@@ -11,24 +11,19 @@
 #include "Offre.hpp"
 #include <string>
 
-namespace std {
 
-    class OffreExcursion : public Offre {
-    private:
-        string description;
-        string lieu;
+class OffreExcursion : public Offre {
+private:
+    string ville;
+    int nbEtoiles;
 
-    public:
-        OffreExcursion(const string& details, shared_ptr<Devise> devise, const string& id, const string& nom, double prix);
+public:
+    OffreExcursion(shared_ptr<Devise> devise, const string& nom, double prix, const string& ville, int nbEtoiles);
+    void definirNbEtoiles(const int nbEtoiles){this->nbEtoiles = nbEtoiles;};
+    string obtenirVille() const{return ville;};
+    int obtenirNbEtoiles() const{return nbEtoiles;};
+    void reserver(const string& client) override;
+};
 
-        void definirDescription(const string& description);
-        void definirLieu(const string& lieu);
-
-        string obtenirLieu() const;
-        string obtenirDescription() const;
-        void reserver(const string& client) override;
-    };
-
-} // namespace std
 
 #endif // OFFRE_EXCURSION_HPP

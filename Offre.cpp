@@ -5,34 +5,20 @@
 //  Original author: Alex
 ///////////////////////////////////////////////////////////
 
-#include "Offre.h"
+#include "Offre.hpp"
 
 
-Offre::Offre(){
-
-}
-
+Offre::Offre(std::shared_ptr<Devise> devise, const std::string& nom, const std::string& date, double prix, const std::string& type):
+	devise(devise), nom(nom),date(date), prix(prix), type(type)
+	{cout << "Entree" << nom << "rattachee a la categorie" << type << "cree!"<< endl;}
 
 
 Offre::~Offre(){
-
-}
-
+};
 
 
-
-
-void Offre::afficherDetails(){
-
-}
-
-
-<double, Devise> Offre::calculerPrixTotal(){
-
-	return  NULL;
-}
-
-
-void Offre::reserver(string id){
-
+double Offre::calculerPrixTotal(double taxe, const Devise& autreDevise) const{
+	double montant = prix * taxe;
+	double montantTot = (*devise).convertir(montant, autreDevise);
+	return montantTot;
 }

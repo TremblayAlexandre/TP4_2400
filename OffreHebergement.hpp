@@ -17,14 +17,13 @@ namespace std {
     class OffreHebergement : public Offre {
     private:
         string addresse;
+        double cote;
     public:
-        OffreHebergement(const string& details, shared_ptr<Devise> devise, const string& id, const string& nom, double prix);
-        void afficherDisponibilite() const;
-        double calculerPrixTotal(double taxe, const Devise& autreDevise) const override;
-        vector<string> obtenirDisponibilite() const;
+        OffreHebergement(shared_ptr<Devise> devise, const string& nom, const string& date, double prix, const string& addresse, double cote);
         void reserver(const string& client) override;
-        string obtenirAddresse() const;
-        void definirAddresse(const string& addresse);
+        string obtenirAddresse() const {return addresse;};
+        int obtenircote() const {return cote;};
+        void definirCote(const int cote){this->cote = cote;};
     };
 
 } // namespace std
