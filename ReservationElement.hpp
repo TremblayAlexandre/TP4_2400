@@ -5,32 +5,33 @@
 //  Original author: Alex
 ///////////////////////////////////////////////////////////
 
-#ifndef RESERVATION_ELEMENT_HPP
-#define RESERVATION_ELEMENT_HPP
+#ifndef RESERVATIONELEMENT_HPP
+#define RESERVATIONELEMENT_HPP
 
-#include <string>
-#include <memory> // Pour std::shared_ptr
+#include "Reservation.hpp"
 #include "ProxyOffreReservation.hpp"
+#include <string>
 
-namespace std {
+using namespace std;
 
-    class ReservationElement {
-    private:
-        std::string contact;
-        std::string vendeur;
-        std::shared_ptr<string> dateAchat;
-        std::shared_ptr<ProxyOffreReservation> proxyOffre;
+class ReservationElement : public Reservation {
+private:
+    ProxyOffreReservation* offre; 
 
-    public:
-        ReservationElement(const std::string& contact, const std::string& vendeur, std::shared_ptr<string> dateAchat, std::shared_ptr<ProxyOffreReservation> proxyOffre);
-        void afficher() const;
-        void ajouterReservation(const ReservationElement& reservation);
-        void changerDate(const string& nouvelleDate);
-        void changerDetails(const std::string& details);
-        void changerNom(const std::string& nouveauNom);
-        void supprimerReservation(const ReservationElement& reservation);
-    };
+public:
+    ReservationElement(const string& date, const string& contact, const string& email, ProxyOffreReservation* offreAssociee);
+    ReservationElement(const string& date, const string& contact, const string& email);
 
-} // namespace std
+    virtual ~ReservationElement();
+
+    ProxyOffreReservation* getOffre() const; 
+
+    void afficherDetails() const override; 
+    void ajouter(std::shared_ptr<Reservation> reservation) override;  // Non applicable pour une feuille
+    void supprimer(Reservation* reservation) override; // Non applicable pour une feuille
+    Reservation* obtenirEnfant(int index) const override; // Non applicable pour une feuille
+
+    bool estGroupe() const override;
+};
 
 #endif // RESERVATION_ELEMENT_HPP

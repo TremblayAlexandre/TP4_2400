@@ -5,44 +5,57 @@
 //  Original author: Alex
 ///////////////////////////////////////////////////////////
 
+
 #include "GroupeReservation.hpp"
+#include <iostream>
 #include <algorithm>
 
-namespace std {
+using namespace std;
 
-    void GroupeReservation::afficher() const {
-        for (const auto& reservation : reservations) {
-            reservation.afficher(); 
-        }
+GroupeReservation::GroupeReservation(const string& date, const string& contact, const string& email)
+    : Reservation(date, contact, email) {}
+
+GroupeReservation::~GroupeReservation() {}
+
+void GroupeReservation::ajouter(std::shared_ptr<Reservation> reservation) {
+    sousReservations.push_back(reservation);
+}
+
+void GroupeReservation::supprimer(Reservation* reservation) {
+    auto it = std::find_if(sousReservations.begin(), sousReservations.end(),
+        [reservation](const std::shared_ptr<Reservation>& res) {
+            return res.get() == reservation;
+        });
+
+    if (it != sousReservations.end()) {
+        sousReservations.erase(it);
     }
-
-    void GroupeReservation::ajouterReservation(const ReservationElement& reservation) {
-        reservations.push_back(reservation);
+    else {
+        throw std::logic_error("La réservation à supprimer n'existe pas dans le groupe.");
     }
+}
 
-    void GroupeReservation::changerDate(const std::string& nouvelleDate) {
-        for (auto& reservation : reservations) {
-            reservation.changerDate(nouvelleDate); 
-        }
+
+Reservation* GroupeReservation::obtenirEnfant(int index) const {
+    if (index < 0 || index >= static_cast<int>(sousReservations.size())) {
+        throw out_of_range("Index hors des limites.");
     }
+    return sousReservations[index].get();
+}
 
-    void GroupeReservation::changerDetails(const std::string& details) {
-        for (auto& reservation : reservations) {
-            reservation.changerDetails(details); 
-        }
+void GroupeReservation::afficherDetails() const {
+    cout << "Détails du groupe de réservations :" << endl;
+    cout << "Date de réservation : " << getDateReservation() << endl;
+    cout << "Contact vendeur : " << getContactVendeur() << endl;
+    cout << "Email vendeur : " << getEmailVendeur() << endl;
+    cout << "Nombre de sous-réservations : " << sousReservations.size() << endl;
+
+    for (const auto& reservation : sousReservations) {
+        reservation->afficherDetails();
     }
+}
 
-    void GroupeReservation::changerNom(const std::string& nouveauNom) {
-        for (auto& reservation : reservations) {
-            reservation.changerNom(nouveauNom); 
-        }
-    }
+bool GroupeReservation::estGroupe() const {
+    return true;
+}
 
-    void GroupeReservation::supprimerReservation(const ReservationElement& reservation) {
-        reservations.erase(
-            std::remove(reservations.begin(), reservations.end(), reservation),
-            reservations.end()
-        );
-    }
-
-} // namespace std

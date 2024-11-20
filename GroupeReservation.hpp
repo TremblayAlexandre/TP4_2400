@@ -5,27 +5,34 @@
 //  Original author: Alex
 ///////////////////////////////////////////////////////////
 
-#ifndef GROUPE_RESERVATION_HPP
-#define GROUPE_RESERVATION_HPP
+#ifndef GROUPERESERVATION_HPP
+#define GROUPERESERVATION_HPP
 
+#include "Reservation.hpp"
 #include <vector>
-#include "ReservationElement.hpp"
+#include <memory>
 
-namespace std {
+using namespace std;
 
-    class GroupeReservation {
-    private:
-        std::vector<ReservationElement> reservations;
+class GroupeReservation : public Reservation {
+private:
+    vector<shared_ptr<Reservation>> sousReservations;  // Liste des sous-réservations
 
-    public:
-        void afficher() const;
-        void ajouterReservation(const ReservationElement& reservation);
-        void changerDate(const string& nouvelleDate);
-        void changerDetails(const std::string& details);
-        void changerNom(const std::string& nouveauNom);
-        void supprimerReservation(const ReservationElement& reservation);
-    };
+public:
+    // Constructeur
+    GroupeReservation(const string& date, const string& contact, const string& email);
 
-} // namespace std
+    // Destructeur
+    virtual ~GroupeReservation();
 
-#endif // GROUPE_RESERVATION_HPP
+    // Méthodes pour manipuler les sous-réservations
+    void ajouter(std::shared_ptr<Reservation> reservation);
+    void supprimer(Reservation* reservation) override;
+    Reservation* obtenirEnfant(int index) const override;
+
+    // Méthodes spécifiques
+    void afficherDetails() const override;  // Affiche les détails du groupe
+    bool estGroupe() const override;       // Retourne true car c'est un groupe
+};
+
+#endif // GROUPERESERVATION_HPP

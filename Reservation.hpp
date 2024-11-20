@@ -10,21 +10,30 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 
+using namespace std;
 class Reservation {
-private:
-    std::string dateDebut;
-    std::string dateFin;
-    std::vector<std::string> details;
-    std::string nom;
+protected:
+    string dateReservation;  
+    string contactVendeur;   
+    string emailVendeur;  
 
 public:
-    void afficher() const;
-    void ajouterDetails(const std::string& detail);
-    void changerDates(std::string& debut, std::string& fin);
-    void changerDetails(const std::vector<std::string>& nouveauxDetails);
-    void changerNom(const std::string& nouveauNom);
-    void supprimerDetail(const std::string& detail);
+    Reservation(const string& date, const string& contact, const string& email);
+
+    virtual ~Reservation();
+
+    string getDateReservation() const;
+    string getContactVendeur() const;
+    string getEmailVendeur() const;
+
+    virtual void afficherDetails() const = 0;   
+    virtual void ajouter(std::shared_ptr<Reservation> reservation);
+    virtual void supprimer(Reservation* reservation); 
+    virtual Reservation* obtenirEnfant(int index) const; 
+
+    virtual bool estGroupe() const = 0;
 };
 
 #endif // RESERVATION_HPP

@@ -6,27 +6,36 @@
 ///////////////////////////////////////////////////////////
 
 #include "Reservation.hpp"
+#include <iostream>
 
-void Reservation::afficher() const {
-    // Implémentation à venir
+using namespace std;
+
+Reservation::Reservation(const string& date, const string& contact, const string& email)
+    : dateReservation(date), contactVendeur(contact), emailVendeur(email) {}
+
+Reservation::~Reservation() {}
+
+string Reservation::getDateReservation() const {
+    return dateReservation;
 }
 
-void Reservation::ajouterDetails(const std::string& detail) {
-    // Implémentation à venir
+string Reservation::getContactVendeur() const {
+    return contactVendeur;
 }
 
-void Reservation::changerDates(std::string& debut, std::string& fin) {
-    // Implémentation à venir
+string Reservation::getEmailVendeur() const {
+    return emailVendeur;
 }
 
-void Reservation::changerDetails(const std::vector<std::string>& nouveauxDetails) {
-    // Implémentation à venir
+void Reservation::ajouter(std::shared_ptr<Reservation> reservation) {
+    throw logic_error("Opération non supportée pour une réservation individuelle.");
 }
 
-void Reservation::changerNom(const std::string& nouveauNom) {
-    // Implémentation à venir
+void Reservation::supprimer(Reservation* reservation) {
+    throw logic_error("Opération non supportée pour une réservation individuelle.");
 }
 
-void Reservation::supprimerDetail(const std::string& detail) {
-    // Implémentation à venir
+Reservation* Reservation::obtenirEnfant(int index) const {
+    throw logic_error("Opération non supportée pour une réservation individuelle.");
 }
+

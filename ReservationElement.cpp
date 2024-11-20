@@ -6,36 +6,48 @@
 ///////////////////////////////////////////////////////////
 
 #include "ReservationElement.hpp"
+#include <iostream>
+#include <stdexcept>
 
-namespace std {
+using namespace std;
 
-    ReservationElement::ReservationElement(const std::string& contact, const std::string& vendeur, std::shared_ptr<string> dateAchat, std::shared_ptr<ProxyOffreReservation> proxyOffre)
-        : contact(contact), vendeur(vendeur), dateAchat(dateAchat), proxyOffre(proxyOffre) {
-        // Initialisation des membres
+ReservationElement::ReservationElement(const string& date, const string& contact, const string& email, ProxyOffreReservation* offreAssociee)
+    : Reservation(date, contact, email), offre(offreAssociee) {
+    if (!offreAssociee) {
+        throw invalid_argument("Le proxy de l'offre associée ne peut pas être nul.");
     }
+}
 
-    void ReservationElement::afficher() const {
-        // Implémentation à venir
-    }
+ReservationElement::ReservationElement(const string& date, const string& contact, const string& email)
+    : Reservation(date, contact, email), offre(nullptr) {
+}
 
-    void ReservationElement::ajouterReservation(const ReservationElement& reservation) {
-        // Implémentation à venir
-    }
+ReservationElement::~ReservationElement() {
+}
 
-    void ReservationElement::changerDate(const string& nouvelleDate) {
-        // Implémentation à venir
-    }
+ProxyOffreReservation* ReservationElement::getOffre() const {
+    return offre;
+}
 
-    void ReservationElement::changerDetails(const std::string& details) {
-        // Implémentation à venir
-    }
+void ReservationElement::afficherDetails() const {
+    cout << "Détails de la réservation élémentaire :" << endl;
+    cout << "Date de réservation : " << getDateReservation() << endl;
+    cout << "Contact vendeur : " << getContactVendeur() << endl;
+    cout << "Email vendeur : " << getEmailVendeur() << endl;
+}
 
-    void ReservationElement::changerNom(const std::string& nouveauNom) {
-        // Implémentation à venir
-    }
+void ReservationElement::ajouter(std::shared_ptr<Reservation> reservation) {
+    throw logic_error("Opération non supportée pour une réservation élémentaire.");
+}
 
-    void ReservationElement::supprimerReservation(const ReservationElement& reservation) {
-        // Implémentation à venir
-    }
+void ReservationElement::supprimer(Reservation* reservation) {
+    throw logic_error("Opération non supportée pour une réservation élémentaire.");
+}
 
-} // namespace std
+Reservation* ReservationElement::obtenirEnfant(int index) const {
+    throw logic_error("Opération non supportée pour une réservation élémentaire.");
+}
+
+bool ReservationElement::estGroupe() const {
+    return false;
+}
