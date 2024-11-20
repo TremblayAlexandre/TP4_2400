@@ -16,12 +16,12 @@ namespace std {
 
     class OffreHebergement : public Offre {
     private:
-        string addresse;
+        string ville;
         double cote;
     public:
-        OffreHebergement(shared_ptr<Devise> devise, const std::string& id, const string& nom, const string& date, double prix, const string& addresse, double cote);
+        OffreHebergement(shared_ptr<Devise> devise, const std::string& id, const string& nom, const string& date, double prix, const string& ville, double cote);
         void reserver(const string& client) override;
-        string obtenirAddresse() const {return addresse;};
+        string obtenirAddresse() const {return ville;};
         int obtenircote() const {return cote;};
         void definirCote(const int cote){this->cote = cote;};
     };
