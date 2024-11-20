@@ -22,6 +22,7 @@ namespace std {
     public:
         OffreVol(std::shared_ptr<Devise> devise, const std::string& id, const std::string& nom, const std::string& date, double prix, const std::string& origine, 
         const std::string& destination, const std::string& heureDepart);
+        
         void definirOrigine(const std::string& origine){this->origine = origine;};
         void definirDestination(const std::string& destination){this->destination = destination;};
         void definirHeureDepart(const std::string& heure){this->heureDepart = heure;};

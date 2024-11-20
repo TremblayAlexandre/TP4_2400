@@ -20,6 +20,7 @@ namespace std {
         double cote;
     public:
         OffreHebergement(shared_ptr<Devise> devise, const std::string& id, const string& nom, const string& date, double prix, const string& ville, double cote);
+        
         void reserver(const string& client) override;
         string obtenirAddresse() const {return ville;};
         int obtenircote() const {return cote;};

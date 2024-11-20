@@ -9,14 +9,13 @@
 #define FABRIQUE_OFFRE_VOL_HPP
 
 #include "OffreVol.hpp"
-#include <map>
-#include <string>
+#include "FabriqueOffre.hpp"
 
 namespace std {
 
-    class FabriqueOffreVol {
+    class FabriqueOffreVol: public FabriqueOffre {
     public:
-        static std::shared_ptr<Offre> creerOffre(const std::string& id, const std::map<std::string, std::string>& params);
+        std::shared_ptr<Offre> creerOffre(const std::string& id, const std::unordered_map<std::string, std::string>& params) override;
     };
 
 } // namespace std

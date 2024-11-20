@@ -9,16 +9,14 @@
 #define FABRIQUE_OFFRE_HEBERGEMENT_HPP
 
 #include "OffreHebergement.hpp"
-#include <map>
-#include <string>
+#include "FabriqueOffre.hpp"
+using namespace std;
 
-namespace std {
 
-    class FabriqueOffreHebergement {
-    public:
-        static std::shared_ptr<Offre> creerOffre(const std::string& id, const std::map<std::string, std::string>& params);
-    };
+class FabriqueOffreHebergement: public FabriqueOffre {
+public:
+    std::shared_ptr<Offre> creerOffre(const std::string& id, const std::unordered_map<std::string, std::string>& params) override;
+};
 
-} // namespace std
 
 #endif // FABRIQUE_OFFRE_HEBERGEMENT_HPP

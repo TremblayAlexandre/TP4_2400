@@ -14,7 +14,7 @@ using namespace std;
 
 class FabriqueOffreExcursion: public FabriqueOffre {
 public:
-    static std::shared_ptr<Offre> creerOffre(const string& id, const unordered_map<std::string, std::string>& params);
+    std::shared_ptr<Offre> creerOffre(const string& id, const unordered_map<std::string, std::string>& params) override;
 };
 
 

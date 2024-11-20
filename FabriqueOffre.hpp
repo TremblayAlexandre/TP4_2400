@@ -10,14 +10,13 @@
 
 #include "Offre.hpp"
 #include <string>
-#include <variant>
 #include <unordered_map>
 using namespace std;
-using MultiType = variant<int, double, string>;
+
 
 class FabriqueOffre {
 public:
-    virtual std::shared_ptr<Offre> creerOffre(const string& id, const unordered_map<std::string, MultiType>& params) = 0;
+    virtual std::shared_ptr<Offre> creerOffre(const string& id, const unordered_map<string, string>& params) = 0;
 };
 
 #endif // FABRIQUE_OFFRE_HPP

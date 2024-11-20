@@ -7,12 +7,12 @@
 
 #include "FabriqueOffreHebergement.hpp"
 #include "OffreHebergement.hpp"
+using namespace std;
 
-namespace std {
+std::shared_ptr<Offre> FabriqueOffreHebergement::creerOffre(const std::string& id, const unordered_map<std::string, std::string>& params) {
+    auto devise = std::make_shared<Devise>(params.at("devise"));
+    auto offre = std::make_shared<OffreHebergement>(devise, id, params.at("nom"), params.at("date"), stod(params.at("prix")), params.at("ville"), stod(params.at("cote")));
+    return offre;
+}
 
-    std::shared_ptr<Offre> FabriqueOffreHebergement::creerOffre(const std::string& id, const std::map<std::string, std::string>& params) {
-        auto devise = std::make_shared<Devise>(params.at("devise"));
-        return std::make_shared<OffreHebergement>(params.at("details"), devise, id, params.at("nom"), std::stod(params.at("prix")));
-    }
 
-} // namespace std
