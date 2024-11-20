@@ -7,18 +7,15 @@
 
 #ifndef FABRIQUE_OFFRE_EXCURSION_HPP
 #define FABRIQUE_OFFRE_EXCURSION_HPP
-
+#include "FabriqueOffre.hpp"
 #include "OffreExcursion.hpp"
-#include <map>
 #include <string>
+using namespace std;
 
-namespace std {
+class FabriqueOffreExcursion: public FabriqueOffre {
+public:
+    static std::shared_ptr<Offre> creerOffre(const string& id, const unordered_map<std::string, std::string>& params);
+};
 
-    class FabriqueOffreExcursion {
-    public:
-        static std::shared_ptr<Offre> creerOffre(const std::string& id, const std::map<std::string, std::string>& params);
-    };
-
-} // namespace std
 
 #endif // FABRIQUE_OFFRE_EXCURSION_HPP

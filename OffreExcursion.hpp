@@ -18,7 +18,7 @@ private:
     int nbEtoiles;
 
 public:
-    OffreExcursion(shared_ptr<Devise> devise, const string& nom, double prix, const string& ville, int nbEtoiles);
+    OffreExcursion(shared_ptr<Devise> devise, const std::string& id, const string& nom, const std::string& date, double prix, const string& ville, int nbEtoiles);
     void definirNbEtoiles(const int nbEtoiles){this->nbEtoiles = nbEtoiles;};
     string obtenirVille() const{return ville;};
     int obtenirNbEtoiles() const{return nbEtoiles;};

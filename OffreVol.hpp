@@ -18,19 +18,16 @@ namespace std {
         std::string origine;
         std::string destination;
         std::string heureDepart;
-        std::string heureArrivee;
 
     public:
-        OffreVol(std::shared_ptr<Devise> devise, const std::string& nom, const std::string& date, double prix, const std::string& origine, 
-        const std::string& destination, const std::string& heureDepart, const std::string& heureArrivee);
+        OffreVol(std::shared_ptr<Devise> devise, const std::string& id, const std::string& nom, const std::string& date, double prix, const std::string& origine, 
+        const std::string& destination, const std::string& heureDepart);
         void definirOrigine(const std::string& origine){this->origine = origine;};
         void definirDestination(const std::string& destination){this->destination = destination;};
         void definirHeureDepart(const std::string& heure){this->heureDepart = heure;};
-        void definirHeureArrivee(const std::string& heure){this->heureArrivee = heure;};
         string obtenirOrigine(){return origine;};
         string obtenirDestination(){return destination;};
         string obtenirHeureDepart(){return heureDepart;};
-        string obtenirHeureArrivee(){return heureArrivee;};
         void reserver(const std::string& client) override;
     };
 

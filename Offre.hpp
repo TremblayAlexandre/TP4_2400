@@ -17,13 +17,14 @@ using namespace std;
 class Offre {
 private:
     std::shared_ptr<Devise> devise;
+    std::string id;
     std::string nom;
     std::string date;
     double prix;
     std::string type;
 
 public:
-    Offre(std::shared_ptr<Devise> devise, const std::string& nom, const std::string& date, double prix, const std::string& type);
+    Offre(std::shared_ptr<Devise> devise, const std::string& id, const std::string& nom, const std::string& date, double prix, const std::string& type);
     virtual void afficherDate()const{cout<<date<<endl;};
     string obtenirDate()const{return date;};    
     string obtenirNom()const{return nom;};

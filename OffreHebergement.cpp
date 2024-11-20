@@ -9,8 +9,8 @@
 #include <iostream>
 
 
-OffreHebergement::OffreHebergement(std::shared_ptr<Devise> devise, const std::string& nom, const string& date, double prix, const string& addresse, double cote):
-Offre(devise, nom, date, prix, "Hebergement"), addresse(addresse), cote(cote) {
+OffreHebergement::OffreHebergement(std::shared_ptr<Devise> devise, const std::string& id, const std::string& nom, const string& date, double prix, const string& addresse, double cote):
+Offre(devise, id, nom, date, prix, "Hebergement"), addresse(addresse), cote(cote) {
 }
 
 void OffreHebergement::reserver(const std::string& client) {

@@ -9,8 +9,8 @@
 #include "OffreExcursion.hpp"
 
 
-OffreExcursion::OffreExcursion(std::shared_ptr<Devise> devise, const std::string& nom, double prix, const string& ville, int nbEtoiles)
-    : Offre(devise, nom, prix, "Excursion"), ville(ville), nbEtoiles(nbEtoiles) {
+OffreExcursion::OffreExcursion(std::shared_ptr<Devise> devise, const std::string& id, const std::string& nom, const std::string& date, double prix, const string& ville, int nbEtoiles)
+    : Offre(devise, id, nom, date, prix, "Excursion"), ville(ville), nbEtoiles(nbEtoiles) {
         
 }
 
