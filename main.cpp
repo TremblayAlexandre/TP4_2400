@@ -27,7 +27,7 @@ vector<unordered_map<string, string>> read_csv(const string &file_path) {
     }
 
     // Read the rest of the rows
-    vector<unordered_map<string, string>> reservations;
+    vector<unordered_map<string, string>> offres;
     while (getline(file, line)) {
         unordered_map<string, string> reservInfos;
         stringstream ss(line);
@@ -40,34 +40,33 @@ vector<unordered_map<string, string>> read_csv(const string &file_path) {
             }
             col_index++;
         }
-        reservations.push_back(reservInfos);
+        offres.push_back(reservInfos);
     }
 
     file.close();
-    return reservations;
+    return offres;
 }
 
 int main() {
     // File paths for each sheet's CSV
-    vector<string> sheets = {"ReservationsCSV/Vols.csv", "ReservationsCSV/Hebergement.csv", "ReservationsCSV/Excursions.csv"};
 
-    vector<unordered_map<string, string>> vols = read_csv("ReservationsCSV/Vols.csv");
-    vector<unordered_map<string, string>> hebergements = read_csv("ReservationsCSV/Hebergements.csv");
-    vector<unordered_map<string, string>> excursions = read_csv("ReservationsCSV/Excursions.csv");
+    vector<unordered_map<string, string>> vols = read_csv("OffresCSV/Vols.csv");
+    vector<unordered_map<string, string>> hebergements = read_csv("OffresCSV/Hebergements.csv");
+    vector<unordered_map<string, string>> excursions = read_csv("OffresCSV/Excursions.csv");
 
-        auto print_reservations = [](const string &type, const vector<unordered_map<string, string>> &reservations) {
-        cout << "==== " << type << " Reservations ====" << endl;
-        for (const auto &reservation : reservations) {
-            for (const auto &pair : reservation) {
+        auto print_offres = [](const string &type, const vector<unordered_map<string, string>> &offres) {
+        cout << "==== " << type << " Offres ====" << endl;
+        for (const auto &offre : offres) {
+            for (const auto &pair : offre) {
                 cout << pair.first << ": " << pair.second << endl;
             }
             cout << "--------------------------" << endl;
         }
     };
 
-    // Print reservations for each category
-    print_reservations("Vols", vols);
-    print_reservations("Hebergements", hebergements);
-    print_reservations("Excursions", excursions);
+    // Print offres for each category
+    print_offres("Vols", vols);
+    print_offres("Hebergements", hebergements);
+    print_offres("Excursions", excursions);
     return 0;
 }
