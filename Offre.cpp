@@ -10,7 +10,7 @@
 
 Offre::Offre(std::shared_ptr<Devise> devise, const std::string& id, const std::string& nom, const std::string& date, double prix, const std::string& type):
 	devise(devise), id(id), nom(nom), date(date), prix(prix), type(type)
-	{cout << "Entree" << nom << "rattachee a la categorie" << type << "cree!"<< endl;}
+	{cout << "Entree" << " " << nom << "rattachee a la categorie" << " " << type << " " << "cree!" << endl; }
 
 
 Offre::~Offre(){

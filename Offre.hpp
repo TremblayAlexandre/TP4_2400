@@ -25,7 +25,7 @@ private:
 
 public:
     Offre(std::shared_ptr<Devise> devise, const std::string& id, const std::string& nom, const std::string& date, double prix, const std::string& type);
-    
+    ~Offre();
     virtual void afficherDate()const{cout<<date<<endl;};
     string obtenirDate()const{return date;};    
     string obtenirNom()const{return nom;};
