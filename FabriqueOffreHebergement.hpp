@@ -10,7 +10,6 @@
 
 #include "OffreHebergement.hpp"
 #include "FabriqueOffre.hpp"
-using namespace std;
 
 
 class FabriqueOffreHebergement: public FabriqueOffre {

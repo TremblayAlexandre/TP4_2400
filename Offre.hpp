@@ -4,7 +4,6 @@
 //  Created on:      17-Nov-2024 2:28:22 PM
 //  Original author: Alex
 ///////////////////////////////////////////////////////////
-#pragma once
 #ifndef OFFRE_HPP
 #define OFFRE_HPP
 
@@ -19,15 +18,12 @@ private:
     std::shared_ptr<Devise> devise;
     std::string id;
     std::string nom;
-    std::string date;
     double prix;
     std::string type;
 
 public:
-    Offre(std::shared_ptr<Devise> devise, const std::string& id, const std::string& nom, const std::string& date, double prix, const std::string& type);
-    ~Offre();
-    virtual void afficherDate()const{cout<<date<<endl;};
-    string obtenirDate()const{return date;};    
+    Offre(std::shared_ptr<Devise> devise, const std::string& id, const std::string& nom, double prix, const std::string& type);
+    ~Offre();   
     string obtenirNom()const{return nom;};
     string obtenirType()const{return type;};
     shared_ptr<Devise> obtenirDevise()const{return devise;};

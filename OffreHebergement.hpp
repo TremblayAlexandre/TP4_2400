@@ -9,24 +9,20 @@
 #define OFFRE_HEBERGEMENT_HPP
 
 #include "Offre.hpp"
-#include <string>
 #include <vector>
 
-namespace std {
+class OffreHebergement : public Offre {
+private:
+    string ville;
+    double cote;
+public:
+    OffreHebergement(shared_ptr<Devise> devise, const std::string& id, const string& nom, double prix, const string& ville, double cote);
+    
+    void reserver(const string& client) override;
+    string obtenirAddresse() const {return ville;};
+    int obtenircote() const {return cote;};
+    void definirCote(const int cote){this->cote = cote;};
+};
 
-    class OffreHebergement : public Offre {
-    private:
-        string ville;
-        double cote;
-    public:
-        OffreHebergement(shared_ptr<Devise> devise, const std::string& id, const string& nom, const string& date, double prix, const string& ville, double cote);
-        
-        void reserver(const string& client) override;
-        string obtenirAddresse() const {return ville;};
-        int obtenircote() const {return cote;};
-        void definirCote(const int cote){this->cote = cote;};
-    };
-
-} // namespace std
 
 #endif // OFFRE_HEBERGEMENT_HPP

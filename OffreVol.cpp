@@ -6,16 +6,12 @@
 ///////////////////////////////////////////////////////////
 
 #include "OffreVol.hpp"
-#include <iostream>
 
-namespace std {
-
-    OffreVol::OffreVol(std::shared_ptr<Devise> devise, const std::string& id, const std::string& nom, const std::string& date, double prix, const std::string& origine ="", 
-        const std::string& destination="", const std::string& heureDepart="")
-        : Offre(devise, id, nom, date, prix, "Transport"), origine(origine), destination(destination), heureDepart(heureDepart){}
+OffreVol::OffreVol(std::shared_ptr<Devise> devise, const std::string& id, const std::string& nom, double prix, const std::string& origine ="", 
+    const std::string& destination="")
+    : Offre(devise, id, nom, prix, "Transport"), origine(origine), destination(destination) {}
 
 
-    void OffreVol::reserver(const std::string& client) {
-    }
+void OffreVol::reserver(const std::string& client) {
+}
 
-} // namespace std

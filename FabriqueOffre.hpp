@@ -9,10 +9,7 @@
 #define FABRIQUE_OFFRE_HPP
 
 #include "Offre.hpp"
-#include <string>
 #include <unordered_map>
-using namespace std;
-
 
 class FabriqueOffre {
 public:

@@ -9,8 +9,6 @@
 #define FABRIQUE_OFFRE_EXCURSION_HPP
 #include "FabriqueOffre.hpp"
 #include "OffreExcursion.hpp"
-#include <string>
-using namespace std;
 
 class FabriqueOffreExcursion: public FabriqueOffre {
 public:

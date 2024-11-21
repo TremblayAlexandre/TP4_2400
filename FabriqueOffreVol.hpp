@@ -11,13 +11,10 @@
 #include "OffreVol.hpp"
 #include "FabriqueOffre.hpp"
 
-namespace std {
 
-    class FabriqueOffreVol: public FabriqueOffre {
-    public:
-        std::shared_ptr<Offre> creerOffre(const std::string& id, const std::unordered_map<std::string, std::string>& params) override;
-    };
-
-} // namespace std
+class FabriqueOffreVol: public FabriqueOffre {
+public:
+    std::shared_ptr<Offre> creerOffre(const std::string& id, const std::unordered_map<std::string, std::string>& params) override;
+};
 
 #endif // FABRIQUE_OFFRE_VOL_HPP

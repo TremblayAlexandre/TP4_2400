@@ -9,29 +9,23 @@
 #define OFFRE_VOL_HPP
 
 #include "Offre.hpp"
-#include <string>
 
-namespace std {
 
-    class OffreVol : public Offre {
-    private:
-        std::string origine;
-        std::string destination;
-        std::string heureDepart;
+class OffreVol : public Offre {
+private:
+    std::string origine;
+    std::string destination;
 
-    public:
-        OffreVol(std::shared_ptr<Devise> devise, const std::string& id, const std::string& nom, const std::string& date, double prix, const std::string& origine, 
-        const std::string& destination, const std::string& heureDepart);
-        
-        void definirOrigine(const std::string& origine){this->origine = origine;};
-        void definirDestination(const std::string& destination){this->destination = destination;};
-        void definirHeureDepart(const std::string& heure){this->heureDepart = heure;};
-        string obtenirOrigine(){return origine;};
-        string obtenirDestination(){return destination;};
-        string obtenirHeureDepart(){return heureDepart;};
-        void reserver(const std::string& client) override;
-    };
+public:
+    OffreVol(std::shared_ptr<Devise> devise, const std::string& id, const std::string& nom, double prix, const std::string& origine, 
+    const std::string& destination);
+    
+    void definirOrigine(const std::string& origine){this->origine = origine;};
+    void definirDestination(const std::string& destination){this->destination = destination;};
+    string obtenirOrigine(){return origine;};
+    string obtenirDestination(){return destination;};
+    void reserver(const std::string& client) override;
+};
 
-} // namespace std
 
 #endif // OFFRE_VOL_HPP
