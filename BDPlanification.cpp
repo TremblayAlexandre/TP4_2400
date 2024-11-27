@@ -20,10 +20,10 @@ std::vector<Reservation> BDPlanification::obtenirReservations() const {
     return {};
 }
 
-Reservation BDPlanification::rechercherReservation(int index) const {
-    // Implémentation vide
-    return Reservation();
-}
+//Reservation BDPlanification::rechercherReservation(int index) const {
+//    // Implémentation vide
+//    return Reservation();
+//}
 
 void BDPlanification::supprimerReservation(int index) {
     // Implémentation vide

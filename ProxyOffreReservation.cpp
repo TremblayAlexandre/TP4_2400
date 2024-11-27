@@ -14,16 +14,16 @@ namespace std {
         : offre(offre) {
     }
 
-    void ProxyOffreReservation::afficherDetails() const {
-        std::cout << "Détails de l'offre: " << obtenirDetails() << std::endl;
+    void ProxyOffreReservation::afficherNom() const {
+        std::cout << "Détails de l'offre: " << obtenirNom() << std::endl;
     }
 
     double ProxyOffreReservation::calculerPrixTotal(double taxe, const Devise& autreDevise) const {
         return offre->calculerPrixTotal(taxe, autreDevise);  
     }
 
-    std::string ProxyOffreReservation::obtenirDetails() const {
-        return offre->obtenirDetails(); 
+    std::string ProxyOffreReservation::obtenirNom() const {
+        return offre->obtenirNom(); 
     }
 
 } // namespace std

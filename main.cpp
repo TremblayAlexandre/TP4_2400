@@ -96,15 +96,22 @@ int main() {
         }
     };
 
-    // afficher offres for each category
-    // afficher_offres("Vols", vols);
-    // afficher_offres("Hebergements", hebergements);
-    // afficher_offres("Excursions", excursions);
+     //afficher offres for each category
+     afficher_offres("Vols", vols);
+     afficher_offres("Hebergements", hebergements);
+     afficher_offres("Excursions", excursions);
     FabriqueOffreVol fabVol = FabriqueOffreVol(); 
     for(unordered_map<string, string> offre : vols){
         fabVol.creerOffre(generateUUID(), offre);
     }
-    
+    FabriqueOffreExcursion fabExc = FabriqueOffreExcursion();
+    for (unordered_map<string, string> offre : excursions) {
+        fabExc.creerOffre(generateUUID(), offre);
+    }
+    FabriqueOffreHebergement fabHeb = FabriqueOffreHebergement();
+    for (unordered_map<string, string> offre : hebergements) {
+        fabHeb.creerOffre(generateUUID(), offre);
+    }
     
     return 0;
 }
