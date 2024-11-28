@@ -9,12 +9,12 @@
 #define FABRIQUE_OFFRE_HEBERGEMENT_HPP
 
 #include "OffreHebergement.hpp"
-#include "FabriqueOffre.hpp"
+#include <unordered_map>
 
 
-class FabriqueOffreHebergement: public FabriqueOffre {
+class FabriqueOffreHebergement{
 public:
-    std::shared_ptr<Offre> creerOffre(const std::string& id, const std::unordered_map<std::string, std::string>& params) override;
+    std::shared_ptr<OffreHebergement> creerOffre(const std::string& id, const std::unordered_map<std::string, std::string>& params);
 };
 
 

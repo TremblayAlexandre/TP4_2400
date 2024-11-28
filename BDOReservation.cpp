@@ -7,31 +7,19 @@
 
 #include "BDOReservation.hpp"
 
-template <typename T, typename Offre>
-void BDOReservation<T, Offre>::afficherOffres() {
+
+
+
+void BDOReservation::afficherOffres() {
+    /*for (const auto& pair : this->BD) {
+        cout << pair.second->obtenirNom() << " : " << pair.second->obtenirPrix();
+    }*/
 }
 
-template <typename T, typename Offre>
-void BDOReservation<T, Offre>::ajouterCollection(const Collections<T, Offre>& collection) {
+void BDOReservation::ajouterOffre(const shared_ptr<Offre>& offre){
+
 }
 
-template <typename T, typename Offre>
-std::vector<Collections<T, Offre>> BDOReservation<T, Offre>::obtenirCollections() const {
-    return {};
-}
 
-template <typename T, typename Offre>
-void BDOReservation<T, Offre>::ajouterOffre(const Offre& offre) {
-}
-
-template <typename T, typename Offre>
-std::vector<Offre> BDOReservation<T, Offre>::obtenirOffres(std::function<bool(const Offre&)> filtre) const {
-    return {};
-}
-
-template <typename T, typename Offre>
-std::vector<Offre> BDOReservation<T, Offre>::obtenirTousOffres() const {
-    return {};
-}
 
 

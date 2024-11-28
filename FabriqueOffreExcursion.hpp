@@ -7,12 +7,12 @@
 
 #ifndef FABRIQUE_OFFRE_EXCURSION_HPP
 #define FABRIQUE_OFFRE_EXCURSION_HPP
-#include "FabriqueOffre.hpp"
 #include "OffreExcursion.hpp"
+#include <unordered_map>
 
-class FabriqueOffreExcursion: public FabriqueOffre {
+class FabriqueOffreExcursion {
 public:
-    std::shared_ptr<Offre> creerOffre(const string& id, const unordered_map<std::string, std::string>& params) override;
+    std::shared_ptr<OffreExcursion> creerOffre(const string& id, const unordered_map<std::string, std::string>& params);
 };
 
 

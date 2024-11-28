@@ -11,15 +11,17 @@ namespace std {
 
     Devise::Devise(const std::string& devise, double tauxChange)
         : devise(devise), tauxChange(tauxChange) {
+        if (devise == "CDN") { this->devise = "CAD"; }
+        if (devise == "EURO") { this->tauxChange = 1.5; }
         // Constructeur initialisé
     }
 
     double Devise::convertir(double montant, const Devise& autreDevise) const {
         // todo cest pas implémenté
-        if (tauxChange == 0 || autreDevise.tauxChange == 0) {
-            return -1.0;
-        }
         return (montant / tauxChange) * autreDevise.tauxChange;
+    }
+    void Devise::changerTauxChange(double nouveauTaux) {
+        if (nouveauTaux > 0.0) { this->tauxChange = nouveauTaux; }
     }
 
 } // namespace std

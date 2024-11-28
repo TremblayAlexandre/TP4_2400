@@ -7,7 +7,7 @@
 
 #include "FabriqueOffreVol.hpp"
 
-std::shared_ptr<Offre> FabriqueOffreVol::creerOffre(const std::string& id, const unordered_map<std::string, std::string>& params) {
+std::shared_ptr<OffreVol> FabriqueOffreVol::creerOffre(const std::string& id, const unordered_map<std::string, std::string>& params) {
     auto devise = std::make_shared<Devise>(params.at("devise"));
     auto offre = std::make_shared<OffreVol>(devise, id, params.at("nom"), stod(params.at("prix")), params.at("origine"), params.at("destination"));
     return offre;

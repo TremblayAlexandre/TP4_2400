@@ -20,6 +20,7 @@ namespace std {
     public:
         Devise(const std::string& devise, double tauxChange = 1.0);
         double convertir(double montant, const Devise& autreDevise) const;
+        void changerTauxChange(double nouveauTaux);
     };
 
 } // namespace std

@@ -9,21 +9,24 @@
 #define BDRESERVATION_HPP
 
 #include <vector>
-#include "Collections.hpp"
+#include "Offre.hpp"
+#include <map>;
+#include <unordered_map>
+using namespace std;
 
-template <typename T, typename Offre>
+//template <typename T, typename Offre>
 class BDOReservation{
 private:
-    std::vector<Collections<T, Offre>> collections;
-    int iterateurCollection;
+    unordered_map<string, map<string, shared_ptr<Offre>>> BD;
+    friend class Offre;
 
 public:
+    BDOReservation() {};
     void afficherOffres();
-    void ajouterCollection(const Collections<T, Offre>& collection);
-    std::vector<Collections<T, Offre>> obtenirCollections() const;
-    void ajouterOffre(const Offre& offre);
-    std::vector<Offre> obtenirOffres(std::function<bool(const Offre&)> filtre) const;
+    void ajouterOffre(const shared_ptr<Offre>& offre);
+    //std::vector<Offre> obtenirOffres(std::function<bool(const Offre&)> filtre) const;
     std::vector<Offre> obtenirTousOffres() const;
+    
 };
 
 #endif // BDRESERVATION_HPP
