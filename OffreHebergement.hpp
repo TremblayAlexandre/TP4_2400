@@ -20,7 +20,7 @@ public:
     
     void reserver(const string& client) override;
     string obtenirAddresse() const {return ville;};
-    int obtenircote() const {return cote;};
+    double obtenircote() const {return cote;};
     void definirCote(const int cote){this->cote = cote;};
 };
 
