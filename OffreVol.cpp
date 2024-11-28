@@ -7,9 +7,9 @@
 
 #include "OffreVol.hpp"
 
-OffreVol::OffreVol(std::shared_ptr<Devise> devise, const std::string& id, const std::string& nom, double prix, const std::string& origine ="", 
+OffreVol::OffreVol(std::shared_ptr<Devise> devise, const std::string& id, const std::string& nom, double prix, const std::string& date, const std::string& origine ="",
     const std::string& destination="")
-    : Offre(devise, id, nom, prix, "Transport"), origine(origine), destination(destination) {}
+    : Offre(devise, id, nom, prix, "Transport"), date(date), origine(origine), destination(destination) {}
 
 
 void OffreVol::reserver(const std::string& client) {

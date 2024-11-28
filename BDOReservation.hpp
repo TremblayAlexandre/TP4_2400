@@ -10,7 +10,7 @@
 
 #include <vector>
 #include "Offre.hpp"
-#include <map>;
+#include <map>
 #include <unordered_map>
 using namespace std;
 
@@ -18,14 +18,13 @@ using namespace std;
 class BDOReservation{
 private:
     unordered_map<string, map<string, shared_ptr<Offre>>> BD;
-    friend class Offre;
 
 public:
-    BDOReservation() {};
-    void afficherOffres();
+    BDOReservation();
+    void afficherOffres(const string& categorie="");
     void ajouterOffre(const shared_ptr<Offre>& offre);
-    //std::vector<Offre> obtenirOffres(std::function<bool(const Offre&)> filtre) const;
-    std::vector<Offre> obtenirTousOffres() const;
+    void ajouterCategorie(const string& categorie);
+    std::vector<shared_ptr<Offre>> obtenirTousOffres() const;
     
 };
 
