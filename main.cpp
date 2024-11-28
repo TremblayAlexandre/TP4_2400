@@ -8,6 +8,7 @@
 #include "FabriqueOffreExcursion.hpp"
 #include "FabriqueOffreHebergement.hpp"
 #include "FabriqueOffreVol.hpp"
+#include "BDOReservation.hpp"
 
 using namespace std;
 
@@ -97,20 +98,26 @@ int main() {
     };
 
      //afficher offres for each category
-     afficher_offres("Vols", vols);
-     afficher_offres("Hebergements", hebergements);
-     afficher_offres("Excursions", excursions);
+     //afficher_offres("Vols", vols);
+     //afficher_offres("Hebergements", hebergements);
+     //afficher_offres("Excursions", excursions);
+
+    BDOReservation BDOR = BDOReservation();
+
     FabriqueOffreVol fabVol = FabriqueOffreVol(); 
     for(unordered_map<string, string> offre : vols){
-        fabVol.creerOffre(generateUUID(), offre);
-    }
-    FabriqueOffreExcursion fabExc = FabriqueOffreExcursion();
-    for (unordered_map<string, string> offre : excursions) {
-        fabExc.creerOffre(generateUUID(), offre);
+        shared_ptr<OffreVol> vol = fabVol.creerOffre(generateUUID(), offre);
+        BDOR.ajouterOffre(vol);
     }
     FabriqueOffreHebergement fabHeb = FabriqueOffreHebergement();
     for (unordered_map<string, string> offre : hebergements) {
-        fabHeb.creerOffre(generateUUID(), offre);
+        shared_ptr<OffreHebergement> hebergement = fabHeb.creerOffre(generateUUID(), offre);
+        BDOR.ajouterOffre(hebergement);
+    }
+    FabriqueOffreExcursion fabExc = FabriqueOffreExcursion();
+    for (unordered_map<string, string> offre : excursions) {
+        shared_ptr<OffreExcursion> excursion = fabExc.creerOffre(generateUUID(), offre);
+        BDOR.ajouterOffre(excursion);
     }
     
     return 0;

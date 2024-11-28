@@ -19,7 +19,7 @@ namespace std {
     }
 
     double ProxyOffreReservation::calculerPrixTotal(double taxe, const Devise& autreDevise) const {
-        return offre->calculerPrixTotal(taxe, autreDevise);  
+        return offre->calculerPrixTotal(autreDevise, taxe);  
     }
 
     std::string ProxyOffreReservation::obtenirNom() const {

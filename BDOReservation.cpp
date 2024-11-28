@@ -9,6 +9,9 @@
 
 BDOReservation::BDOReservation() {
 	cout << "Objet BDOR cree!" << endl;
+	ajouterCategorie("Transport");
+	ajouterCategorie("Hebergement");
+	ajouterCategorie("Excursion");
 }
 
 void BDOReservation::afficherOffres(const string& categorie){
