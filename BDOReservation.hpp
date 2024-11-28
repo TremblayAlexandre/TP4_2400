@@ -24,6 +24,8 @@ public:
     void afficherOffres(const string& categorie="");
     void ajouterOffre(const shared_ptr<Offre>& offre);
     void ajouterCategorie(const string& categorie);
+    shared_ptr<Offre> trouverOffreParNom(const string& nom);
+    shared_ptr<Offre> trouverOffreParId(const string& id);
     std::vector<shared_ptr<Offre>> obtenirTousOffres() const;
     
 };

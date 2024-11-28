@@ -81,7 +81,6 @@ string generateUUID() {
 }
 
 int main() {
-    // File paths for each sheet's CSV
 
     vector<unordered_map<string, string>> vols = read_csv("OffresCSV/Vols.csv");
     vector<unordered_map<string, string>> hebergements = read_csv("OffresCSV/Hebergements.csv");

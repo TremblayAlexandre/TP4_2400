@@ -20,7 +20,6 @@ void BDOReservation::afficherOffres(const string& categorie){
 			for (const auto& pair : pair.second) {
 				cout << pair.second->obtenirNom() << " : " << pair.second->obtenirPrix() << endl;
 			}
-
 		}
 	}
 	else {
@@ -43,6 +42,26 @@ void BDOReservation::ajouterCategorie(const string& categorie){
 	if (!this->BD.contains(categorie)) {
 		this->BD[categorie];
 		cout << "Categorie " << categorie << " creee!" << endl;
+	}
+}
+
+shared_ptr<Offre> BDOReservation::trouverOffreParNom(const string& nom) {
+	for (const auto& pair : this->BD) {
+		for (const auto& pair : pair.second) {
+			if (pair.second->obtenirNom().find(nom)) {
+				return pair.second;
+			}
+		}
+	}
+}
+
+shared_ptr<Offre> BDOReservation::trouverOffreParId(const string& id) {
+	for (const auto& pair : this->BD) {
+		for (const auto& pair : pair.second) {
+			if (id == pair.first) {
+				return pair.second;
+			}
+		}
 	}
 }
 
