@@ -11,29 +11,30 @@
 
 using namespace std;
 
-ReservationElement::ReservationElement(const string& date, const string& contact, const string& email, ProxyOffreReservation* offreAssociee)
-    : Reservation(date, contact, email), offre(offreAssociee) {
+ReservationElement::ReservationElement(const string& nom, const string& date, const string& contact, const string& email, ProxyOffreReservation* offreAssociee)
+    : Reservation(nom, date, contact, email), offre(offreAssociee) {
     if (!offreAssociee) {
         throw invalid_argument("Le proxy de l'offre associée ne peut pas être nul.");
     }
-}
-
-ReservationElement::ReservationElement(const string& date, const string& contact, const string& email)
-    : Reservation(date, contact, email), offre(nullptr) {
+    cout << "         ";
+    cout << "Reservation creee : ";
+    cout << "Voyage de " << obtenirNomTitulaire() << "/";
+    cout << obtenirDateReservation() << "/";
+    cout << offre->obtenirNom() << endl;
 }
 
 ReservationElement::~ReservationElement() {
 }
 
-ProxyOffreReservation* ReservationElement::getOffre() const {
-    return offre;
+double ReservationElement::obtenirCouts() const {
+    return offre->obtenirPrix(); 
 }
 
 void ReservationElement::afficherDetails() const {
     cout << "Détails de la réservation élémentaire :" << endl;
-    cout << "Date de réservation : " << getDateReservation() << endl;
-    cout << "Contact vendeur : " << getContactVendeur() << endl;
-    cout << "Email vendeur : " << getEmailVendeur() << endl;
+    cout << "Date de réservation : " << obtenirDateReservation() << endl;
+    cout << "Contact vendeur : " << obtenirContactVendeur() << endl;
+    cout << "Email vendeur : " << obtenirEmailVendeur() << endl;
 }
 
 void ReservationElement::ajouter(std::shared_ptr<Reservation> reservation) {
@@ -45,6 +46,10 @@ void ReservationElement::supprimer(Reservation* reservation) {
 }
 
 Reservation* ReservationElement::obtenirEnfant(int index) const {
+    throw logic_error("Opération non supportée pour une réservation élémentaire.");
+}
+
+vector<shared_ptr<Reservation>> ReservationElement::obtenirEnfants() const {
     throw logic_error("Opération non supportée pour une réservation élémentaire.");
 }
 

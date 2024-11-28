@@ -16,23 +16,28 @@ using namespace std;
 
 class GroupeReservation : public Reservation {
 private:
-    vector<shared_ptr<Reservation>> sousReservations;  // Liste des sous-réservations
+    vector<shared_ptr<Reservation>> sousReservations; 
+    string titreReservation;
 
 public:
-    // Constructeur
-    GroupeReservation(const string& date, const string& contact, const string& email);
+    GroupeReservation(const string& titre, const string& nom, const string& date,
+        const string& contact, const string& email, const bool estRacine=false);
+    GroupeReservation(const GroupeReservation& autre, const string& nom);
 
-    // Destructeur
     virtual ~GroupeReservation();
 
-    // Méthodes pour manipuler les sous-réservations
     void ajouter(std::shared_ptr<Reservation> reservation);
     void supprimer(Reservation* reservation) override;
     Reservation* obtenirEnfant(int index) const override;
+    vector<shared_ptr<Reservation>> obtenirEnfants() const override;
 
-    // Méthodes spécifiques
-    void afficherDetails() const override;  // Affiche les détails du groupe
-    bool estGroupe() const override;       // Retourne true car c'est un groupe
+
+   
+    void afficherDetails() const override;
+    bool estGroupe() const override;       
+    double obtenirCouts() const override;
+    string obtenirTitreReservation() const;
+
 };
 
 #endif // GROUPERESERVATION_HPP

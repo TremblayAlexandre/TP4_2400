@@ -11,6 +11,7 @@
 #include "Reservation.hpp"
 #include "ProxyOffreReservation.hpp"
 #include <string>
+#include "GroupeReservation.hpp"
 
 using namespace std;
 
@@ -19,17 +20,16 @@ private:
     ProxyOffreReservation* offre; 
 
 public:
-    ReservationElement(const string& date, const string& contact, const string& email, ProxyOffreReservation* offreAssociee);
-    ReservationElement(const string& date, const string& contact, const string& email);
+    ReservationElement(const string& nom, const string& date, const string& contact, const string& email, ProxyOffreReservation* offreAssociee);
 
     virtual ~ReservationElement();
 
-    ProxyOffreReservation* getOffre() const; 
-
+    double obtenirCouts() const override;
     void afficherDetails() const override; 
     void ajouter(std::shared_ptr<Reservation> reservation) override;  // Non applicable pour une feuille
     void supprimer(Reservation* reservation) override; // Non applicable pour une feuille
     Reservation* obtenirEnfant(int index) const override; // Non applicable pour une feuille
+    vector<shared_ptr<Reservation>> obtenirEnfants() const override; // Non applicable pour une feuille
 
     bool estGroupe() const override;
 };

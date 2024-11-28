@@ -20,10 +20,12 @@ namespace std {
 
     public:
         ProxyOffreReservation(std::shared_ptr<Offre> offre);
-        void afficherNom() const;
-        double calculerPrixTotal(double taxe, const Devise& autreDevise) const;
         string obtenirNom() const;
-        
+        string obtenirType()const;
+        shared_ptr<Devise> obtenirDevise()const;
+        double obtenirPrix()const;
+        double obtenirPrixTotal(const Devise& autreDevise, double taxe) const;
+
 
     };
 

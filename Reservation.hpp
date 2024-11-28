@@ -14,25 +14,38 @@
 
 using namespace std;
 class Reservation {
-protected:
+private:
     string dateReservation;  
     string contactVendeur;   
     string emailVendeur;  
+    string nomTitulaire;
+    Reservation* parent = nullptr;
+    bool aParent;
 
 public:
-    Reservation(const string& date, const string& contact, const string& email);
+    Reservation(const string& nom, const string& date, const string& contact, const string& email);
+    Reservation(const Reservation& autre);
+
 
     virtual ~Reservation();
 
-    string getDateReservation() const;
-    string getContactVendeur() const;
-    string getEmailVendeur() const;
+    string obtenirDateReservation() const;
+    string obtenirContactVendeur() const;
+    string obtenirEmailVendeur() const;
+    string obtenirNomTitulaire() const;
 
+
+
+    virtual vector<shared_ptr<Reservation>> obtenirEnfants() const = 0;
+    virtual double obtenirCouts() const = 0;
     virtual void afficherDetails() const = 0;   
-    virtual void ajouter(std::shared_ptr<Reservation> reservation);
-    virtual void supprimer(Reservation* reservation); 
-    virtual Reservation* obtenirEnfant(int index) const; 
+    virtual void ajouter(std::shared_ptr<Reservation> reservation) = 0;
+    virtual void supprimer(Reservation* reservation) = 0;
+    virtual Reservation* obtenirEnfant(int index) const = 0;
 
+    bool obtenirAParent();
+    void definirParent(Reservation*);
+    Reservation* obtenirParent(Reservation* grpReservation);
     virtual bool estGroupe() const = 0;
 };
 
