@@ -17,7 +17,7 @@ Offre::~Offre(){
 };
 
 
-double Offre::calculerPrixTotal(double taxe, const Devise& autreDevise) const{
+double Offre::calculerPrixTotal(const Devise& autreDevise, double taxe) const{
 	double montant = prix * taxe;
 	double montantTot = (*devise).convertir(montant, autreDevise);
 	return montantTot;

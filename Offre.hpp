@@ -28,7 +28,7 @@ public:
     string obtenirType()const{return type;};
     shared_ptr<Devise> obtenirDevise()const{return devise;};
     double obtenirPrix()const{return prix;};
-    virtual double calculerPrixTotal(double taxe, const Devise& autreDevise) const;
+    virtual double calculerPrixTotal(const Devise& autreDevise, double taxe = 1.0) const;
     virtual void reserver(const std::string& client) = 0;
     friend class BDOReservation;
 };
