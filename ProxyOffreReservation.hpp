@@ -24,7 +24,7 @@ namespace std {
         string obtenirType()const;
         shared_ptr<Devise> obtenirDevise()const;
         double obtenirPrix()const;
-        double obtenirPrixTotal(const Devise& autreDevise, double taxe) const;
+        double obtenirPrixTotal(const string& autreDevise, double taxe) const;
 
 
     };

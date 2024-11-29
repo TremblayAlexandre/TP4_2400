@@ -30,7 +30,7 @@ public:
     string obtenirType()const{return type;};
     shared_ptr<Devise> obtenirDevise()const{return devise;};
     double obtenirPrix()const{return prix;};
-    virtual double calculerPrixTotal(const Devise& autreDevise, double taxe = 1.0) const;
+    virtual double calculerPrixTotal(const string& autredevise, double taxe = 1.0) const;
     shared_ptr<ProxyOffreReservation> reserver();
     friend class BDOReservation;
 };
