@@ -18,7 +18,7 @@ namespace std {
 
     double Devise::convertir(double montant, const Devise& autreDevise) const {
         // todo cest pas implémenté
-        return (montant / tauxChange) * autreDevise.tauxChange;
+        return (montant * tauxChange) / autreDevise.tauxChange;
     }
     void Devise::changerTauxChange(double nouveauTaux) {
         if (nouveauTaux > 0.0) { this->tauxChange = nouveauTaux; }
