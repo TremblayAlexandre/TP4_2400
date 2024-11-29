@@ -15,6 +15,7 @@
 using namespace std;
 class Reservation {
 private:
+    string titreReservation = "";
     string dateReservation;  
     string contactVendeur;   
     string emailVendeur;  
@@ -33,6 +34,7 @@ public:
     string obtenirContactVendeur() const;
     string obtenirEmailVendeur() const;
     string obtenirNomTitulaire() const;
+    string obtenirTitreReservation() const;
 
 
 
@@ -45,6 +47,10 @@ public:
 
     bool obtenirAParent();
     void definirParent(Reservation*);
+    void definirTitreReservation(const string& titre);
+    void definirTitulaire(const string& nom);
+
+
     Reservation* obtenirParent(Reservation* grpReservation);
     virtual bool estGroupe() const = 0;
 };

@@ -21,6 +21,7 @@ ReservationElement::ReservationElement(const string& nom, const string& date, co
     cout << "Voyage de " << obtenirNomTitulaire() << "/";
     cout << obtenirDateReservation() << "/";
     cout << offre->obtenirNom() << endl;
+    definirTitreReservation("Voyage de " + nom);
 }
 
 ReservationElement::~ReservationElement() {

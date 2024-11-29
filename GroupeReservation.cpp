@@ -14,15 +14,18 @@
 using namespace std;
 
 GroupeReservation::GroupeReservation(const string& titre, const string& nom, const string& date, const string& contact, const string& email, const bool estRacine)
-    : Reservation(nom,date, contact, email), titreReservation(titre){
+    : Reservation(nom,date, contact, email){
+    definirTitreReservation(titre);
     if (estRacine) {
         cout << titre << " de " << nom << " cree!" <<endl;
     }
 }
 GroupeReservation::GroupeReservation(const GroupeReservation& autre, const string& nom)
-    : Reservation(autre),
-    titreReservation(autre.titreReservation), sousReservations(autre.sousReservations){
-    cout << titreReservation  <<" de " << nom << " copie a partir du " << autre.titreReservation <<" de " << autre.obtenirNomTitulaire() << "!" << endl;
+    : Reservation(autre)
+{
+    definirTitulaire(nom);
+    definirTitreReservation(autre.obtenirTitreReservation());
+    cout << obtenirTitreReservation()  <<" de " << nom << " copie a partir du " << autre.obtenirTitreReservation() <<" de " << autre.obtenirNomTitulaire() << "!" << endl;
 }
 
 GroupeReservation::~GroupeReservation() {}
@@ -36,9 +39,7 @@ void GroupeReservation::ajouter(std::shared_ptr<Reservation> reservation) {
     }
 }
 
-string GroupeReservation::obtenirTitreReservation() const {
-    return titreReservation;
-}
+
 
 
 void GroupeReservation::supprimer(Reservation* reservation) {

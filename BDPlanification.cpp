@@ -6,25 +6,25 @@
 ///////////////////////////////////////////////////////////
 
 #include "BDPlanification.hpp"
+#include <iostream>
 
-void BDPlanification::afficherReservations() const {
-    // Implémentation vide
+
+
+void BDPlanification::ajouterReservation(shared_ptr<Reservation> reservation) {
+    this->reservations[reservation->obtenirTitreReservation()] = reservation;
 }
 
-void BDPlanification::ajouterReservation(const Reservation& reservation) {
-    // Implémentation vide
+unordered_map<string, shared_ptr<Reservation>> BDPlanification::obtenirReservations() const {
+    return reservations;
 }
 
-std::vector<Reservation> BDPlanification::obtenirReservations() const {
-    // Implémentation vide
-    return {};
+
+shared_ptr<Reservation> BDPlanification::rechercherReservation(const string& name) const {
+    if (this->reservations.contains(name)) return reservations.at(name);
+
+    return nullptr;
 }
 
-//Reservation BDPlanification::rechercherReservation(int index) const {
-//    // Implémentation vide
-//    return Reservation();
-//}
-
-void BDPlanification::supprimerReservation(int index) {
-    // Implémentation vide
+void BDPlanification::supprimerReservation(shared_ptr<Reservation> reservation) {
+    this->reservations.erase(reservation->obtenirTitreReservation());
 }

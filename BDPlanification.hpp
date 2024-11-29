@@ -9,18 +9,19 @@
 #define BDPLANIFICATION_HPP
 
 #include <vector>
+#include <unordered_map>
 #include "Reservation.hpp"
 
 class BDPlanification {
 private:
-    std::vector<Reservation> reservations;
+    unordered_map<string, shared_ptr<Reservation>> reservations;
 
 public:
-    void afficherReservations() const;
-    void ajouterReservation(const Reservation& reservation);
-    std::vector<Reservation> obtenirReservations() const;
-    Reservation rechercherReservation(int index) const;
-    void supprimerReservation(int index);
+    BDPlanification() {};
+    void ajouterReservation(shared_ptr<Reservation> reservation);
+    unordered_map<string, shared_ptr<Reservation>> obtenirReservations() const;
+    shared_ptr<Reservation> rechercherReservation(const string& name) const;
+    void supprimerReservation(shared_ptr<Reservation> reservation);
 };
 
 #endif // BDPLANIFICATION_HPP

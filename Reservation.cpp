@@ -15,13 +15,18 @@ Reservation::Reservation(const string& nom,const string& date, const string& con
     contactVendeur(contact),
     emailVendeur(email),
     nomTitulaire(nom),
-    aParent(false) {}
+    aParent(false) {
+    titreReservation = "";
+}
 
 Reservation::Reservation(const Reservation& autre) : dateReservation(autre.dateReservation),
     contactVendeur(autre.contactVendeur),
     emailVendeur(autre.emailVendeur),
     nomTitulaire(autre.nomTitulaire),
-    aParent(autre.aParent) {}
+    aParent(autre.aParent), titreReservation(autre.titreReservation) {
+    
+
+}
 
 
 Reservation::~Reservation() {}
@@ -41,6 +46,10 @@ string Reservation::obtenirContactVendeur() const {
 string Reservation::obtenirEmailVendeur() const {
     return emailVendeur;
 }
+string Reservation::obtenirTitreReservation() const {
+    return titreReservation;
+}
+
 
 void Reservation::definirParent(Reservation* grpReservation) {
     parent = grpReservation;
@@ -55,4 +64,9 @@ bool Reservation::obtenirAParent() {
     return aParent;
 }
 
-
+void Reservation::definirTitreReservation(const string& titre) {
+    titreReservation = titre;
+}
+void Reservation::definirTitulaire(const string& nom) {
+    nomTitulaire = nom;
+}
