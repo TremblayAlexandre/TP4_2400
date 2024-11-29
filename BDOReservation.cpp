@@ -58,10 +58,8 @@ shared_ptr<Offre> BDOReservation::trouverOffreParNom(const string& nom) {
 
 shared_ptr<Offre> BDOReservation::trouverOffreParId(const string& id) {
 	for (const auto& pair : this->BD) {
-		for (const auto& pair : pair.second) {
-			if (id == pair.first) {
-				return pair.second;
-			}
+		if (pair.second.contains(id)) {
+			return pair.second.at(id);
 		}
 	}
 	return nullptr;

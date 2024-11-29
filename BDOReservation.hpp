@@ -17,7 +17,7 @@ using namespace std;
 //template <typename T, typename Offre>
 class BDOReservation{
 private:
-    unordered_map<string, map<string, shared_ptr<Offre>>> BD;
+    unordered_map<string, unordered_map<string, shared_ptr<Offre>>> BD;
 
 public:
     BDOReservation();
