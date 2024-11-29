@@ -10,21 +10,23 @@
 
 #include <memory> // Pour std::shared_ptr
 #include <string>
+#include "OffreAbstraite.hpp"
 #include "Offre.hpp"
+
 class Offre;
 namespace std {
 
-    class ProxyOffreReservation {
+    class ProxyOffreReservation: public OffreAbstraite {
     private:
         std::shared_ptr<Offre> offre;
 
     public:
         ProxyOffreReservation(std::shared_ptr<Offre> offre);
-        string obtenirNom() const;
-        string obtenirType()const;
-        shared_ptr<Devise> obtenirDevise()const;
-        double obtenirPrix()const;
-        double obtenirPrixTotal(const string& autreDevise, double taxe) const;
+        string obtenirNom() const override;
+        string obtenirType()const override;
+        shared_ptr<Devise> obtenirDevise()const override;
+        double obtenirPrix()const override;
+        double calculerPrixTotal(const string& autredevise, double taxe = 1.0) const override;
 
 
     };

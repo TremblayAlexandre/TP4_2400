@@ -18,7 +18,7 @@ namespace std {
         return offre->obtenirPrix();
     }
 
-    double ProxyOffreReservation::obtenirPrixTotal(const string& autreDevise, double taxe) const {
+    double ProxyOffreReservation::calculerPrixTotal(const string& autreDevise, double taxe) const {
         return offre->calculerPrixTotal(autreDevise, taxe);
     }
 
