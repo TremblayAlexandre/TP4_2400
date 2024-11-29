@@ -11,7 +11,7 @@
 #include <memory> // Pour std::shared_ptr
 #include <string>
 #include "Offre.hpp"
-
+class Offre;
 namespace std {
 
     class ProxyOffreReservation {

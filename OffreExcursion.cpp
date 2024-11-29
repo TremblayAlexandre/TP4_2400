@@ -12,6 +12,3 @@ OffreExcursion::OffreExcursion(std::shared_ptr<Devise> devise, const std::string
         
 }
 
-void OffreExcursion::reserver(const std::string& client) {
-}
-

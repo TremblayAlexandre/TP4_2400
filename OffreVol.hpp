@@ -26,7 +26,6 @@ public:
     string obtenirOrigine(){return origine;};
     string obtenirDestination(){return destination;};
     string obtenirDate() {return date;};
-    void reserver(const std::string& client) override;
 };
 
 

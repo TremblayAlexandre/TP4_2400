@@ -11,9 +11,11 @@
 #include <string>
 #include <memory> // Pour std::shared_ptr
 #include "Devise.hpp"
+#include "ProxyOffreReservation.hpp"
+namespace std { class ProxyOffreReservation; }
 using namespace std;
 
-class Offre {
+class Offre : public std::enable_shared_from_this<Offre> {
 private:
     std::shared_ptr<Devise> devise;
     std::string id;
@@ -29,7 +31,7 @@ public:
     shared_ptr<Devise> obtenirDevise()const{return devise;};
     double obtenirPrix()const{return prix;};
     virtual double calculerPrixTotal(const Devise& autreDevise, double taxe = 1.0) const;
-    virtual void reserver(const std::string& client) = 0;
+    shared_ptr<ProxyOffreReservation> reserver();
     friend class BDOReservation;
 };
 

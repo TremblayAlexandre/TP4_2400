@@ -11,9 +11,3 @@
 OffreHebergement::OffreHebergement(std::shared_ptr<Devise> devise, const std::string& id, const std::string& nom, double prix, const string& ville, double cote):
 Offre(devise, id, nom, prix, "Hebergement"), ville(ville), cote(cote) {
 }
-
-void OffreHebergement::reserver(const std::string& client) {
-}
-
-
-

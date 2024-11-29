@@ -21,7 +21,6 @@ public:
     void definirNbEtoiles(const int nbEtoiles){this->nbEtoiles = nbEtoiles;};
     string obtenirVille() const{return ville;};
     int obtenirNbEtoiles() const{return nbEtoiles;};
-    void reserver(const string& client) override;
 };
 
 

@@ -18,7 +18,6 @@ private:
 public:
     OffreHebergement(shared_ptr<Devise> devise, const std::string& id, const string& nom, double prix, const string& ville, double cote);
     
-    void reserver(const string& client) override;
     string obtenirAddresse() const {return ville;};
     double obtenirCote() const {return cote;};
     void definirCote(const int cote){this->cote = cote;};

@@ -53,6 +53,7 @@ shared_ptr<Offre> BDOReservation::trouverOffreParNom(const string& nom) {
 			}
 		}
 	}
+	return nullptr;
 }
 
 shared_ptr<Offre> BDOReservation::trouverOffreParId(const string& id) {
@@ -63,6 +64,7 @@ shared_ptr<Offre> BDOReservation::trouverOffreParId(const string& id) {
 			}
 		}
 	}
+	return nullptr;
 }
 
 std::vector<shared_ptr<Offre>> BDOReservation::obtenirTousOffres() const{

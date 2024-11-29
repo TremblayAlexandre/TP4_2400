@@ -123,7 +123,6 @@
   <ItemGroup>
     <ClCompile Include="BDOReservation.cpp" />
     <ClCompile Include="BDPlanification.cpp" />
-    <ClCompile Include="Collections.cpp" />
     <ClCompile Include="Devise.cpp" />
     <ClCompile Include="FabriqueOffreExcursion.cpp" />
     <ClCompile Include="FabriqueOffreHebergement.cpp" />
@@ -142,7 +141,6 @@
   <ItemGroup>
     <ClInclude Include="BDOReservation.hpp" />
     <ClInclude Include="BDPlanification.hpp" />
-    <ClInclude Include="Collections.hpp" />
     <ClInclude Include="Devise.hpp" />
     <ClInclude Include="FabriqueOffreExcursion.hpp" />
     <ClInclude Include="FabriqueOffreHebergement.hpp" />

@@ -21,13 +21,7 @@
     <ClCompile Include="BDPlanification.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Collections.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Devise.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FabriqueOffre.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FabriqueOffreExcursion.cpp">
@@ -77,13 +71,7 @@
     <ClInclude Include="BDPlanification.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Collections.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Devise.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FabriqueOffre.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FabriqueOffreExcursion.hpp">

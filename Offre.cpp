@@ -22,3 +22,7 @@ double Offre::calculerPrixTotal(const Devise& autreDevise, double taxe) const{
 	double montantTot = (*devise).convertir(montant, autreDevise);
 	return montantTot;
 }
+
+shared_ptr<ProxyOffreReservation> Offre::reserver() {
+	return make_shared<ProxyOffreReservation>(shared_from_this());
+}
