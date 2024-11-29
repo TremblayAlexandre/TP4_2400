@@ -110,6 +110,9 @@
     <ClInclude Include="ReservationElement.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="OffreAbstraite.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="offrescsv\Excursions.csv" />

@@ -148,6 +148,7 @@
     <ClInclude Include="GroupeReservation.hpp" />
     <ClInclude Include="Iterateur.hpp" />
     <ClInclude Include="Offre.hpp" />
+    <ClInclude Include="OffreAbstraite.hpp" />
     <ClInclude Include="OffreExcursion.hpp" />
     <ClInclude Include="OffreHebergement.hpp" />
     <ClInclude Include="OffreVol.hpp" />
