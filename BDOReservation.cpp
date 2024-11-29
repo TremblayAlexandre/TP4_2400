@@ -48,7 +48,7 @@ void BDOReservation::ajouterCategorie(const string& categorie){
 shared_ptr<Offre> BDOReservation::trouverOffreParNom(const string& nom) {
 	for (const auto& pair : this->BD) {
 		for (const auto& pair : pair.second) {
-			if (pair.second->obtenirNom().find(nom)) {
+			if (!pair.second->obtenirNom().find(nom)) {
 				return pair.second;
 			}
 		}
