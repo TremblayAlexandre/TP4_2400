@@ -12,3 +12,6 @@ OffreExcursion::OffreExcursion(std::shared_ptr<Devise> devise, const std::string
         
 }
 
+string OffreExcursion::obtenirDetails() const {
+    return (nom + ", " + ville + " : " + to_string(prix));
+}

@@ -18,7 +18,7 @@ namespace std { class ProxyOffreReservation; }
 using namespace std;
 
 class Offre : public OffreAbstraite, public std::enable_shared_from_this<Offre> {
-private:
+protected:
     std::shared_ptr<Devise> devise;
     std::string id;
     std::string nom;
@@ -27,12 +27,13 @@ private:
 
 public:
     Offre(std::shared_ptr<Devise> devise, const std::string& id, const std::string& nom, double prix, const std::string& type);
-    ~Offre();   
-    string obtenirNom()const override {return nom;} ;
+    ~Offre(); 
+    string obtenirNom()const override {return nom;};
     string obtenirType()const override {return type;};
+    virtual string obtenirDetails() const = 0;
     shared_ptr<Devise> obtenirDevise()const override {return devise;};
     double obtenirPrix()const override {return prix;};
-    virtual double calculerPrixTotal(const string& autredevise, double taxe = 1.0) const override;
+    double calculerPrixTotal(const string& autredevise = "CAD", double taxe = 1.0) const override;
     shared_ptr<ProxyOffreReservation> reserver();
     friend class BDOReservation;
 };

@@ -21,6 +21,7 @@ public:
     void definirNbEtoiles(const int nbEtoiles){this->nbEtoiles = nbEtoiles;};
     string obtenirVille() const{return ville;};
     int obtenirNbEtoiles() const{return nbEtoiles;};
+    string obtenirDetails() const override;
 };
 
 

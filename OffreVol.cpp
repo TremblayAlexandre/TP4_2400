@@ -12,3 +12,7 @@ OffreVol::OffreVol(std::shared_ptr<Devise> devise, const std::string& id, const 
     : Offre(devise, id, nom, prix, "Transport"), date(date), origine(origine), destination(destination) {}
 
 
+string OffreVol::obtenirDetails() const {
+    return (nom + ", " + origine + " --> " + destination + " : " = to_string(prix));
+}
+

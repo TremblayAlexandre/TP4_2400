@@ -26,6 +26,7 @@ public:
     string obtenirOrigine(){return origine;};
     string obtenirDestination(){return destination;};
     string obtenirDate() {return date;};
+    string obtenirDetails() const override;
 };
 
 

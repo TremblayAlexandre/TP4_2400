@@ -21,6 +21,7 @@ public:
     string obtenirAddresse() const {return ville;};
     double obtenirCote() const {return cote;};
     void definirCote(const int cote){this->cote = cote;};
+    string obtenirDetails() const override;
 };
 
 
