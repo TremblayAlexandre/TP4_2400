@@ -17,15 +17,25 @@ GroupeReservation::GroupeReservation(const string& titre, const string& nom, con
     : Reservation(nom,date, contact, email){
     definirTitreReservation(titre);
     if (estRacine) {
-        cout << titre << " de " << nom << " cree!" <<endl;
+        cout << titre << " cree!" <<endl;
     }
 }
 GroupeReservation::GroupeReservation(const GroupeReservation& autre, const string& nom)
     : Reservation(autre)
 {
     definirTitulaire(nom);
-    definirTitreReservation(autre.obtenirTitreReservation());
-    cout << obtenirTitreReservation()  <<" de " << nom << " copie a partir du " << autre.obtenirTitreReservation() <<" de " << autre.obtenirNomTitulaire() << "!" << endl;
+    string titre = autre.obtenirTitreReservation();
+    size_t pos = titre.find(' ');
+    string firstWord = (pos == std::string::npos) ? titre : titre.substr(0, pos);
+
+    if (firstWord == "Voyage") titre = "Voyage de " + nom;
+    definirTitreReservation(titre);
+    cout << obtenirTitreReservation() << " copie a partir du " << autre.obtenirTitreReservation() << "!" << endl;
+
+    // Effectuer une copie profonde des sous-réservations
+    for (const auto& res : autre.sousReservations) {
+        sousReservations.push_back(res->clone());
+    }
 }
 
 GroupeReservation::~GroupeReservation() {}
@@ -34,7 +44,13 @@ void GroupeReservation::ajouter(std::shared_ptr<Reservation> reservation) {
     sousReservations.push_back(reservation);
     std::shared_ptr<GroupeReservation> groupeRes = std::dynamic_pointer_cast<GroupeReservation>(reservation);
     if (groupeRes) {
-        cout << groupeRes.get()->obtenirTitreReservation() << " cree dans " << obtenirTitreReservation();
+        const string titre = groupeRes.get()->obtenirTitreReservation();
+        size_t pos = titre.find(' ');
+        string firstWord = (pos == std::string::npos) ? titre : titre.substr(0, pos);
+        
+        if (firstWord == "Journee") cout << "      ";
+        else if (firstWord == "Segment") cout << "   ";
+        cout << groupeRes.get()->obtenirTitreReservation() << " cree dans le " << obtenirTitreReservation();
         cout << " de " << obtenirNomTitulaire() << endl;
     }
 }
@@ -42,19 +58,7 @@ void GroupeReservation::ajouter(std::shared_ptr<Reservation> reservation) {
 
 
 
-void GroupeReservation::supprimer(Reservation* reservation) {
-    auto it = std::find_if(sousReservations.begin(), sousReservations.end(),
-        [reservation](const std::shared_ptr<Reservation>& res) {
-            return res.get() == reservation;
-        });
 
-    if (it != sousReservations.end()) {
-        sousReservations.erase(it);
-    }
-    else {
-        throw std::logic_error("La réservation à supprimer n'existe pas dans le groupe.");
-    }
-}
 
 
 Reservation* GroupeReservation::obtenirEnfant(int index) const {
@@ -67,6 +71,15 @@ vector<shared_ptr<Reservation>> GroupeReservation::obtenirEnfants() const {
     return (this->sousReservations);
 }
 
+void GroupeReservation::supprimer(const string& titre) {
+    for (auto it = sousReservations.begin(); it != sousReservations.end(); ++it) {
+        if ((*it)->obtenirTitreReservation() == titre) {
+            cout << "   " <<(*it)->obtenirTitreReservation() << " efface!" << endl;
+            sousReservations.erase(it);
+            break;
+        }
+    }
+}
 
 void GroupeReservation::afficherDetails() const {
     cout << "Détails du groupe de réservations :" << endl;
@@ -87,6 +100,10 @@ double GroupeReservation::obtenirCouts() const {
         total += enfant->obtenirCouts();
     }
     return total;
+}
+
+std::shared_ptr<Reservation> GroupeReservation::clone() const {
+    return std::make_shared<GroupeReservation>(*this);
 }
 
 bool GroupeReservation::estGroupe() const {

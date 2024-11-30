@@ -26,11 +26,11 @@ public:
     virtual ~GroupeReservation();
 
     void ajouter(std::shared_ptr<Reservation> reservation);
-    void supprimer(Reservation* reservation) override;
+    void supprimer(const string& titre) override;
     Reservation* obtenirEnfant(int index) const override;
     vector<shared_ptr<Reservation>> obtenirEnfants() const override;
 
-
+    std::shared_ptr<Reservation> clone() const override;
    
     void afficherDetails() const override;
     bool estGroupe() const override;       

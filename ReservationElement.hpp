@@ -17,19 +17,20 @@ using namespace std;
 
 class ReservationElement : public Reservation {
 private:
-    ProxyOffreReservation* offre; 
+    shared_ptr<ProxyOffreReservation> offre;
 
 public:
-    ReservationElement(const string& nom, const string& date, const string& contact, const string& email, ProxyOffreReservation* offreAssociee);
+    ReservationElement(const string& nom, const string& date, const string& contact, const string& email, shared_ptr<ProxyOffreReservation> offreAssociee);
 
     virtual ~ReservationElement();
 
     double obtenirCouts() const override;
     void afficherDetails() const override; 
     void ajouter(std::shared_ptr<Reservation> reservation) override;  // Non applicable pour une feuille
-    void supprimer(Reservation* reservation) override; // Non applicable pour une feuille
+    void supprimer(const string& titre) override; // Non applicable pour une feuille
     Reservation* obtenirEnfant(int index) const override; // Non applicable pour une feuille
     vector<shared_ptr<Reservation>> obtenirEnfants() const override; // Non applicable pour une feuille
+    std::shared_ptr<Reservation> clone() const override;
 
     bool estGroupe() const override;
 };

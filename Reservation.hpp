@@ -42,14 +42,14 @@ public:
     virtual double obtenirCouts() const = 0;
     virtual void afficherDetails() const = 0;   
     virtual void ajouter(std::shared_ptr<Reservation> reservation) = 0;
-    virtual void supprimer(Reservation* reservation) = 0;
+    virtual void supprimer(const string& titre) = 0;
     virtual Reservation* obtenirEnfant(int index) const = 0;
 
     bool obtenirAParent();
     void definirParent(Reservation*);
     void definirTitreReservation(const string& titre);
     void definirTitulaire(const string& nom);
-
+    virtual std::shared_ptr<Reservation> clone() const = 0;
 
     Reservation* obtenirParent(Reservation* grpReservation);
     virtual bool estGroupe() const = 0;

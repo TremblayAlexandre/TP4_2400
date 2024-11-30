@@ -24,8 +24,6 @@ Reservation::Reservation(const Reservation& autre) : dateReservation(autre.dateR
     emailVendeur(autre.emailVendeur),
     nomTitulaire(autre.nomTitulaire),
     aParent(autre.aParent), titreReservation(autre.titreReservation) {
-    
-
 }
 
 

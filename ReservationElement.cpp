@@ -11,7 +11,7 @@
 
 using namespace std;
 
-ReservationElement::ReservationElement(const string& nom, const string& date, const string& contact, const string& email, ProxyOffreReservation* offreAssociee)
+ReservationElement::ReservationElement(const string& nom, const string& date, const string& contact, const string& email, shared_ptr<ProxyOffreReservation> offreAssociee)
     : Reservation(nom, date, contact, email), offre(offreAssociee) {
     if (!offreAssociee) {
         throw invalid_argument("Le proxy de l'offre associée ne peut pas être nul.");
@@ -42,7 +42,7 @@ void ReservationElement::ajouter(std::shared_ptr<Reservation> reservation) {
     throw logic_error("Opération non supportée pour une réservation élémentaire.");
 }
 
-void ReservationElement::supprimer(Reservation* reservation) {
+void ReservationElement::supprimer(const string& titre) {
     throw logic_error("Opération non supportée pour une réservation élémentaire.");
 }
 
@@ -53,7 +53,9 @@ Reservation* ReservationElement::obtenirEnfant(int index) const {
 vector<shared_ptr<Reservation>> ReservationElement::obtenirEnfants() const {
     throw logic_error("Opération non supportée pour une réservation élémentaire.");
 }
-
+std::shared_ptr<Reservation> ReservationElement::clone() const {
+    return std::make_shared<ReservationElement>(*this);
+}
 bool ReservationElement::estGroupe() const {
     return false;
 }
