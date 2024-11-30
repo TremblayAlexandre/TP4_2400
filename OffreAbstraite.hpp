@@ -23,7 +23,7 @@ namespace std {
         virtual string obtenirType() const = 0;
         virtual shared_ptr<Devise> obtenirDevise() const = 0;
         virtual double obtenirPrix() const = 0;
-        virtual double calculerPrixTotal(const string& autredevise, double taxe = 1.0) const = 0;
+        virtual double calculerPrixTotal(const string& autredevise = "CAD", double taxe = 1.0) const = 0;
     };
 }
 #endif // OFFRE_ABSTRAITE_HPP
