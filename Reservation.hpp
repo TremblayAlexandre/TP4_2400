@@ -46,7 +46,7 @@ public:
     virtual Reservation* obtenirEnfant(int index) const = 0;
 
     bool obtenirAParent();
-    void definirParent(Reservation*);
+    void definirParent(Reservation* grpReservation);
     void definirTitreReservation(const string& titre);
     void definirTitulaire(const string& nom);
     virtual std::shared_ptr<Reservation> clone(const string& nouvNom) const = 0;
