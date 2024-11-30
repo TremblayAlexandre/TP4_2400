@@ -53,8 +53,9 @@ Reservation* ReservationElement::obtenirEnfant(int index) const {
 vector<shared_ptr<Reservation>> ReservationElement::obtenirEnfants() const {
     throw logic_error("Opération non supportée pour une réservation élémentaire.");
 }
-std::shared_ptr<Reservation> ReservationElement::clone() const {
-    return std::make_shared<ReservationElement>(*this);
+std::shared_ptr<Reservation> ReservationElement::clone(const string& nouvNom) const {
+    shared_ptr<Reservation> temp = make_shared<ReservationElement>(*this);
+    return temp;
 }
 bool ReservationElement::estGroupe() const {
     return false;

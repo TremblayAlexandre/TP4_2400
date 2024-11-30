@@ -49,7 +49,7 @@ public:
     void definirParent(Reservation*);
     void definirTitreReservation(const string& titre);
     void definirTitulaire(const string& nom);
-    virtual std::shared_ptr<Reservation> clone() const = 0;
+    virtual std::shared_ptr<Reservation> clone(const string& nouvNom) const = 0;
 
     Reservation* obtenirParent(Reservation* grpReservation);
     virtual bool estGroupe() const = 0;

@@ -30,7 +30,7 @@ public:
     Reservation* obtenirEnfant(int index) const override;
     vector<shared_ptr<Reservation>> obtenirEnfants() const override;
 
-    std::shared_ptr<Reservation> clone() const override;
+    std::shared_ptr<Reservation> clone(const string& nouvNom) const override;
    
     void afficherDetails() const override;
     bool estGroupe() const override;       

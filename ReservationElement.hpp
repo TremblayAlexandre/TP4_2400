@@ -30,7 +30,7 @@ public:
     void supprimer(const string& titre) override; // Non applicable pour une feuille
     Reservation* obtenirEnfant(int index) const override; // Non applicable pour une feuille
     vector<shared_ptr<Reservation>> obtenirEnfants() const override; // Non applicable pour une feuille
-    std::shared_ptr<Reservation> clone() const override;
+    std::shared_ptr<Reservation> clone(const string& nouvNom) const override;
 
     bool estGroupe() const override;
 };

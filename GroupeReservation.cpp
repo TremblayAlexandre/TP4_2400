@@ -28,13 +28,13 @@ GroupeReservation::GroupeReservation(const GroupeReservation& autre, const strin
     size_t pos = titre.find(' ');
     string firstWord = (pos == std::string::npos) ? titre : titre.substr(0, pos);
 
-    if (firstWord == "Voyage") titre = "Voyage de " + nom;
+    if (firstWord == "Voyage") titre = nom =="Alicia" ? "Voyage d'" + nom : "Voyage de " + nom;
     definirTitreReservation(titre);
     cout << obtenirTitreReservation() << " copie a partir du " << autre.obtenirTitreReservation() << "!" << endl;
 
     // Effectuer une copie profonde des sous-réservations
     for (const auto& res : autre.sousReservations) {
-        sousReservations.push_back(res->clone());
+        sousReservations.push_back(res->clone(nom));
     }
 }
 
@@ -47,11 +47,15 @@ void GroupeReservation::ajouter(std::shared_ptr<Reservation> reservation) {
         const string titre = groupeRes.get()->obtenirTitreReservation();
         size_t pos = titre.find(' ');
         string firstWord = (pos == std::string::npos) ? titre : titre.substr(0, pos);
-        
+        string parentTitre = obtenirTitreReservation();
+        size_t pos2 = parentTitre.rfind(' ');
+        string lastWord = (pos2 == std::string::npos) ? parentTitre : parentTitre.substr(pos2 + 1);
         if (firstWord == "Journee") cout << "      ";
         else if (firstWord == "Segment") cout << "   ";
         cout << groupeRes.get()->obtenirTitreReservation() << " cree dans le " << obtenirTitreReservation();
-        cout << " de " << obtenirNomTitulaire() << endl;
+        //if (!(lastWord == obtenirNomTitulaire())) cout << " de " << obtenirNomTitulaire();
+        cout <<"!"<< endl;
+        
     }
 }
 
@@ -102,8 +106,10 @@ double GroupeReservation::obtenirCouts() const {
     return total;
 }
 
-std::shared_ptr<Reservation> GroupeReservation::clone() const {
-    return std::make_shared<GroupeReservation>(*this);
+std::shared_ptr<Reservation> GroupeReservation::clone(const string& nouvNom) const {
+    shared_ptr<Reservation> temp = make_shared<GroupeReservation>(*this); 
+    temp->definirTitulaire(nouvNom);
+    return temp;
 }
 
 bool GroupeReservation::estGroupe() const {
