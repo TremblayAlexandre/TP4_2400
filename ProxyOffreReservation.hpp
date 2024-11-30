@@ -26,7 +26,7 @@ namespace std {
         string obtenirType()const override;
         shared_ptr<Devise> obtenirDevise()const override;
         double obtenirPrix()const override;
-        double calculerPrixTotal(const string& autredevise, double taxe = 1.0) const override;
+        double calculerPrixTotal(const string& autredevise = "CAD", double taxe = 1.0) const override;
 
 
     };

@@ -34,7 +34,7 @@ public:
    
     void afficherDetails() const override;
     bool estGroupe() const override;       
-    double obtenirCouts() const override;
+    double obtenirCouts(const string& autredevise, double taxe) const override;
 
 };
 

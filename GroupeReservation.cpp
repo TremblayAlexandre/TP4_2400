@@ -97,11 +97,11 @@ void GroupeReservation::afficherDetails() const {
     }
 }
 
-double GroupeReservation::obtenirCouts() const {
+double GroupeReservation::obtenirCouts(const string& autredevise = "CAD", double taxe = 1.0) const {
     double total = 0.0;
     const auto& enfants = this->obtenirEnfants();
     for (const auto& enfant : enfants) {
-        total += enfant->obtenirCouts();
+        total += enfant->obtenirCouts(autredevise, taxe);
     }
     return total;
 }

@@ -39,7 +39,7 @@ public:
 
 
     virtual vector<shared_ptr<Reservation>> obtenirEnfants() const = 0;
-    virtual double obtenirCouts() const = 0;
+    virtual double obtenirCouts(const string& autredevise = "CAD", double taxe = 1.0) const = 0;
     virtual void afficherDetails() const = 0;   
     virtual void ajouter(std::shared_ptr<Reservation> reservation) = 0;
     virtual void supprimer(const string& titre) = 0;

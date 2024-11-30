@@ -27,8 +27,8 @@ ReservationElement::ReservationElement(const string& nom, const string& date, co
 ReservationElement::~ReservationElement() {
 }
 
-double ReservationElement::obtenirCouts() const {
-    return offre->obtenirPrix(); 
+double ReservationElement::obtenirCouts(const string& autredevise = "CAD", double taxe = 1.0) const {
+    return offre->calculerPrixTotal(autredevise, taxe); 
 }
 
 void ReservationElement::afficherDetails() const {

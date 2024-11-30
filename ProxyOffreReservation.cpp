@@ -15,8 +15,6 @@ namespace std {
     }
 
     double ProxyOffreReservation::obtenirPrix() const {
-        const auto test = offre->obtenirPrix();
-
         return offre->obtenirPrix();
     }
 

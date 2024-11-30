@@ -32,7 +32,7 @@ public:
     string obtenirType()const override {return type;};
     virtual string obtenirDetails() const = 0;
     shared_ptr<Devise> obtenirDevise()const override {return devise;};
-    double obtenirPrix()const override {return prix * devise->obtenirTauxChange();};
+    double obtenirPrix()const override { return prix; };
     double calculerPrixTotal(const string& autredevise = "CAD", double taxe = 1.0) const override;
     shared_ptr<ProxyOffreReservation> reserver();
     friend class BDOReservation;
