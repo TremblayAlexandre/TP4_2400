@@ -11,7 +11,7 @@
 BDPlanification* BDPlanification::instance = nullptr;
 
 
-BDPlanification* BDPlanification::getInstance(){
+BDPlanification* BDPlanification::obtenirInstance(){
     if (instance == nullptr) {
         instance = new BDPlanification();
     }

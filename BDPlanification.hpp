@@ -22,7 +22,7 @@ private:
 public:
     BDPlanification(const BDPlanification&) = delete;
     BDPlanification& operator=(const BDPlanification&) = delete;
-    static BDPlanification* getInstance();
+    static BDPlanification* obtenirInstance();
     ~BDPlanification() = default;
 
     void ajouterReservation(shared_ptr<Reservation> reservation);

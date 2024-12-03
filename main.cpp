@@ -92,7 +92,7 @@ string generateUUID() {
 
 
 void reservationsScript(shared_ptr<BDOReservation> BDOR) {
-    BDPlanification* BDP = BDPlanification::getInstance();
+    BDPlanification* BDP = BDPlanification::obtenirInstance();
  
     cout << endl; // Pour séparer de la section en haut
     shared_ptr<GroupeReservation> voyageDoraPtr = make_shared<GroupeReservation>(
@@ -365,7 +365,7 @@ int main() {
     vector<unordered_map<string, string>> hebergements = read_csv("OffresCSV/Hebergements.csv");
     vector<unordered_map<string, string>> excursions = read_csv("OffresCSV/Excursions.csv");
 
-    BDOReservation* rawBDOR = BDOReservation::getInstance();
+    BDOReservation* rawBDOR = BDOReservation::obtenirInstance();
     shared_ptr<BDOReservation> BDOR(rawBDOR);
 
 

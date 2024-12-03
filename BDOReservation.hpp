@@ -26,7 +26,7 @@ private:
 public:
     BDOReservation(const BDOReservation&) = delete;
     BDOReservation& operator=(const BDOReservation&) = delete;
-    static BDOReservation* getInstance();
+    static BDOReservation* obtenirInstance();
     ~BDOReservation() = default;
 
     void afficherOffres(const string& categorie="");

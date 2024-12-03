@@ -11,7 +11,7 @@ BDOReservation* BDOReservation::instance = nullptr;
 int BDOReservation::nombreOffres = 0;
 
 
-BDOReservation* BDOReservation::getInstance() {
+BDOReservation* BDOReservation::obtenirInstance() {
 	if (instance == nullptr) {
 		instance = new BDOReservation();
 		cout << "Objet BDOR cree!" << endl;
