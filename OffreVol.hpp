@@ -7,6 +7,7 @@
 
 #ifndef OFFRE_VOL_HPP
 #define OFFRE_VOL_HPP
+#pragma once
 
 #include "Offre.hpp"
 

@@ -7,10 +7,10 @@
 
 #ifndef RESERVATIONELEMENT_HPP
 #define RESERVATIONELEMENT_HPP
+#pragma once
 
 #include "Reservation.hpp"
 #include "ProxyOffreReservation.hpp"
-#include <string>
 #include "GroupeReservation.hpp"
 
 using namespace std;

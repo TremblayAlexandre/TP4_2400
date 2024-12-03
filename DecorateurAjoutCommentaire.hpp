@@ -1,5 +1,6 @@
 #ifndef DECORATEUR_AJOUT_COMMENTAIRE_HPP
 #define DECORATEUR_AJOUT_COMMENTAIRE_HPP
+#pragma once
 
 #include "DecorateurAbstrait.hpp"
 

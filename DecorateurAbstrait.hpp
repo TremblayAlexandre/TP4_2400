@@ -1,8 +1,9 @@
 #ifndef DECORATEUR_ABSTRAIT_HPP
 #define DECORATEUR_ABSTRAIT_HPP
+#pragma once
 
 #include "ReservationElement.hpp"
-#include <memory>
+
 using namespace std;
 class DecorateurAbstrait : public ReservationElement {
 protected:

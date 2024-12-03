@@ -7,8 +7,9 @@
 
 #ifndef FABRIQUE_OFFRE_EXCURSION_HPP
 #define FABRIQUE_OFFRE_EXCURSION_HPP
+#pragma once
+
 #include "OffreExcursion.hpp"
-#include <unordered_map>
 
 class FabriqueOffreExcursion {
 public:

@@ -2,9 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip>
-#include <vector>
 #include <random>
-#include <unordered_map>
 #include "FabriqueOffreExcursion.hpp"
 #include "FabriqueOffreHebergement.hpp"
 #include "FabriqueOffreVol.hpp"

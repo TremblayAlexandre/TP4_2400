@@ -5,19 +5,21 @@
 //  Original author: Alex
 ///////////////////////////////////////////////////////////
 
-#ifndef BDRESERVATION_HPP
-#define BDRESERVATION_HPP
+#ifndef BDORESERVATION_HPP
+#define BDORESERVATION_HPP
+#pragma once
 
 #include <vector>
 #include "Offre.hpp"
-#include <map>
-#include <unordered_map>
+#include "ObservateurRabais.hpp"
+
 using namespace std;
 
 //template <typename T, typename Offre>
 class BDOReservation{
 private:
     unordered_map<string, unordered_map<string, shared_ptr<Offre>>> BD;
+    static int nombreOffres;
 
 public:
     BDOReservation();
@@ -27,8 +29,10 @@ public:
     shared_ptr<Offre> trouverOffreParNom(const string& nom);
     shared_ptr<Offre> trouverOffreParId(const string& id);
     std::vector<shared_ptr<Offre>> obtenirTousOffres() const;
+    int obtenirNbOffres() { return nombreOffres; }
+    friend class GestionnaireBDOR;
     
 };
 
-#endif // BDRESERVATION_HPP
+#endif // BDORESERVATION_HPP
 

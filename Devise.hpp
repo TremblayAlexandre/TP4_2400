@@ -7,6 +7,7 @@
 
 #ifndef DEVISE_HPP
 #define DEVISE_HPP
+#pragma once
 
 #include <string>
 

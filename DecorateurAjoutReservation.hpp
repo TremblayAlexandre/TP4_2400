@@ -1,5 +1,6 @@
 #ifndef DECORATEUR_AJOUT_RESERVATION_HPP
 #define DECORATEUR_AJOUT_RESERVATION_HPP
+#pragma once
 
 #include "DecorateurAbstrait.hpp"
 using namespace std;

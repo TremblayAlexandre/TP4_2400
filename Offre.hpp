@@ -6,13 +6,14 @@
 ///////////////////////////////////////////////////////////
 #ifndef OFFRE_HPP
 #define OFFRE_HPP
+#pragma once
 
 #include <iostream>
-#include <string>
-#include <memory> // Pour std::shared_ptr
 #include "Devise.hpp"
 #include "OffreAbstraite.hpp"
 #include "ProxyOffreReservation.hpp"
+#include "ObservateurRabais.hpp"
+#include <unordered_map>
 
 namespace std { class ProxyOffreReservation; }
 using namespace std;
@@ -23,17 +24,26 @@ protected:
     std::string id;
     std::string nom;
     double prix;
+    double prixOriginal;
     std::string type;
-
+    std::string commentaire = "";
+    unordered_map<string, shared_ptr<ObservateurRabais>> rabais;
+    
 public:
     Offre(std::shared_ptr<Devise> devise, const std::string& id, const std::string& nom, double prix, const std::string& type);
     ~Offre(); 
     string obtenirNom()const override {return nom;};
     string obtenirType()const override {return type;};
+    string obtenirCommentaire()const  { return commentaire;};
+    void definirCommentaire(const std::string& commentaire) { this->commentaire = commentaire; };
     virtual string obtenirDetails() const = 0;
     shared_ptr<Devise> obtenirDevise()const override {return devise;};
     double obtenirPrix()const override { return prix; };
+    void definirPrix(double nouvPrix) { this->prix = nouvPrix; }
     double calculerPrixTotal(const string& autredevise, double taxe) const override;
+    void ajouterObsRabais(const string& nom, shared_ptr<ObservateurRabais> obsRabais);
+    void retirerObsRabais(const string& nom);
+    
     shared_ptr<ProxyOffreReservation> reserver();
     friend class BDOReservation;
 };

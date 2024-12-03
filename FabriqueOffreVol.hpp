@@ -7,10 +7,9 @@
 
 #ifndef FABRIQUE_OFFRE_VOL_HPP
 #define FABRIQUE_OFFRE_VOL_HPP
+#pragma once
 
 #include "OffreVol.hpp"
-#include <unordered_map>
-
 
 class FabriqueOffreVol{
 public:

@@ -1,15 +1,14 @@
-// OffreAbstraite.h
 ///////////////////////////////////////////////////////////
 //  OffreAbstraite.h
-//  Abstract class definition for Offre
+//  Abstract class definition for OffreAbstraite
 //  Created on:      17-Nov-2024 2:28:22 PM
 //  Original author: Alex
 ///////////////////////////////////////////////////////////
 
 #ifndef OFFRE_ABSTRAITE_HPP
 #define OFFRE_ABSTRAITE_HPP
+#pragma once
 
-#include <string>
 #include <memory>
 #include "Devise.hpp"
 

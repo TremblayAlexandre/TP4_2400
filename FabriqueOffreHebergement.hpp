@@ -7,10 +7,9 @@
 
 #ifndef FABRIQUE_OFFRE_HEBERGEMENT_HPP
 #define FABRIQUE_OFFRE_HEBERGEMENT_HPP
+#pragma once
 
 #include "OffreHebergement.hpp"
-#include <unordered_map>
-
 
 class FabriqueOffreHebergement{
 public:

@@ -7,9 +7,8 @@
 
 #ifndef PROXY_OFFRE_RESERVATION_HPP
 #define PROXY_OFFRE_RESERVATION_HPP
+#pragma once
 
-#include <memory> // Pour std::shared_ptr
-#include <string>
 #include "OffreAbstraite.hpp"
 #include "Offre.hpp"
 

@@ -7,6 +7,7 @@
 
 #ifndef OFFRE_EXCURSION_HPP
 #define OFFRE_EXCURSION_HPP
+#pragma once
 
 #include "Offre.hpp"
 

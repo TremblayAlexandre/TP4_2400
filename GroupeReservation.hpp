@@ -7,10 +7,9 @@
 
 #ifndef GROUPERESERVATION_HPP
 #define GROUPERESERVATION_HPP
+#pragma once
 
 #include "Reservation.hpp"
-#include <vector>
-#include <memory>
 #include "Visiteur.hpp"
 
 

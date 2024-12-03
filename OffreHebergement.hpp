@@ -7,9 +7,9 @@
 
 #ifndef OFFRE_HEBERGEMENT_HPP
 #define OFFRE_HEBERGEMENT_HPP
+#pragma once
 
 #include "Offre.hpp"
-#include <vector>
 
 class OffreHebergement : public Offre {
 private:

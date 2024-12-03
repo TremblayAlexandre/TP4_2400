@@ -7,6 +7,8 @@
 
 #include "BDOReservation.hpp"
 
+int BDOReservation::nombreOffres = 0;
+
 BDOReservation::BDOReservation() {
 	cout << "Objet BDOR cree!" << endl;
 	ajouterCategorie("Transport");
@@ -36,6 +38,7 @@ void BDOReservation::ajouterOffre(const shared_ptr<Offre>& offre){
 		ajouterCategorie(offre->obtenirType());
 	}
 	this->BD.at(offre->obtenirType())[offre->id] = offre;
+	nombreOffres += 1;
 }
 
 void BDOReservation::ajouterCategorie(const string& categorie){

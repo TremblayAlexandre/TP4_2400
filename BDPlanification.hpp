@@ -7,6 +7,7 @@
 
 #ifndef BDPLANIFICATION_HPP
 #define BDPLANIFICATION_HPP
+#pragma once
 
 #include <vector>
 #include <unordered_map>

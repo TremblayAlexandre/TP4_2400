@@ -1,13 +1,11 @@
 #ifndef GESTIONNAIRE_DECORATEUR_HPP
 #define GESTIONNAIRE_DECORATEUR_HPP
+#pragma once
 
 #include "DecorateurAjoutReservation.hpp"
 #include "DecorateurAjoutCommentaire.hpp"
-#include <memory>
 #include <typeinfo>
-#include <vector>
 #include <algorithm>
-#include <string>
 
 using namespace std;
 
