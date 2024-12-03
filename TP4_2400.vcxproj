@@ -159,6 +159,8 @@
     <ClInclude Include="ProxyOffreReservation.hpp" />
     <ClInclude Include="Reservation.hpp" />
     <ClInclude Include="ReservationElement.hpp" />
+    <ClInclude Include="VisiteurEcritureFichier.hpp" />
+    <ClInclude Include="VisiteurReservation.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="offrescsv\Excursions.csv" />
