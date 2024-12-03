@@ -141,10 +141,14 @@
   <ItemGroup>
     <ClInclude Include="BDOReservation.hpp" />
     <ClInclude Include="BDPlanification.hpp" />
+    <ClInclude Include="DecorateurAbstrait.hpp" />
+    <ClInclude Include="DecorateurAjoutCommentaire.hpp" />
+    <ClInclude Include="DecorateurAjoutReservation.hpp" />
     <ClInclude Include="Devise.hpp" />
     <ClInclude Include="FabriqueOffreExcursion.hpp" />
     <ClInclude Include="FabriqueOffreHebergement.hpp" />
     <ClInclude Include="FabriqueOffreVol.hpp" />
+    <ClInclude Include="GestionnaireDecorateur.hpp" />
     <ClInclude Include="GroupeReservation.hpp" />
     <ClInclude Include="Iterateur.hpp" />
     <ClInclude Include="Offre.hpp" />

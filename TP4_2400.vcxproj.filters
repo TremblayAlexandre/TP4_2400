@@ -63,9 +63,6 @@
     <ClCompile Include="ReservationElement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VisiteurReservation.hpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BDOReservation.hpp">
@@ -116,10 +113,16 @@
     <ClInclude Include="OffreAbstraite.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VisiteurEcritureFichier.hpp">
+    <ClInclude Include="DecorateurAbstrait.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Visiteur.hpp">
+    <ClInclude Include="DecorateurAjoutCommentaire.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DecorateurAjoutReservation.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GestionnaireDecorateur.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
