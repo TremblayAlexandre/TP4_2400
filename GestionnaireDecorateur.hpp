@@ -26,10 +26,7 @@ public:
     }
 
     // Enlever un décorateur spécifique (par propriété)
-    shared_ptr<ReservationElement> enleverDecorateur(
-        shared_ptr<ReservationElement> objet,
-        const string& critere
-    ) {
+    shared_ptr<ReservationElement> enleverDecorateur(shared_ptr<ReservationElement> objet,const string& critere) {
         if (!objet) return nullptr;
 
         // Pointeur pour reconstruire la chaîne sans le décorateur à enlever
