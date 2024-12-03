@@ -13,19 +13,16 @@ class GestionnaireDecorateur {
 public:
     GestionnaireDecorateur() = default;
 
-    // Ajouter un décorateur de type `DecorateurAjoutReservation`
     shared_ptr<ReservationElement> ajouterDecorateur(shared_ptr<ReservationElement> objet,
         const string& nomReservation, const string& date, const string& heure, double coutsSupplementaire=0.0) {
         return make_shared<DecorateurAjoutReservation>(objet, nomReservation, date, heure, coutsSupplementaire);
     }
 
-    // Ajouter un décorateur de type `DecorateurAjoutCommentaire`
     shared_ptr<ReservationElement> ajouterDecorateur(shared_ptr<ReservationElement> objet,
         const string& commentaire) {
         return make_shared<DecorateurAjoutCommentaire>(objet, commentaire);
     }
 
-    // Enlever un décorateur spécifique (par propriété)
     shared_ptr<ReservationElement> enleverDecorateur(shared_ptr<ReservationElement> objet,const string& critere) {
         if (!objet) return nullptr;
 
