@@ -41,10 +41,44 @@ GroupeReservation::GroupeReservation(const GroupeReservation& autre, const strin
 GroupeReservation::~GroupeReservation() {}
 
 void GroupeReservation::ajouter(std::shared_ptr<Reservation> reservation) {
-    sousReservations.push_back(reservation);
+    if (sousReservations.empty()) {
+        sousReservations.push_back(reservation);
+    }
+    else {
+        const string date = reservation->obtenirDateReservation();
+        bool inserer = false;
+
+        for (size_t i = 0; i < sousReservations.size(); ++i) {
+            string dateActuelle = sousReservations[i]->obtenirDateReservation();
+
+            if (date < dateActuelle) {
+                // Insérer avant la réservation actuelle
+                sousReservations.insert(sousReservations.begin() + i, reservation);
+                inserer = true;
+                break;
+            }
+            else if (date == dateActuelle) {
+                // Trouver la dernière réservation avec la même date
+                size_t j = i;
+                while (j < sousReservations.size() && sousReservations[j]->obtenirDateReservation() == date) {
+                    ++j;
+                }
+                // Insérer après toutes les réservations ayant la même date
+                sousReservations.insert(sousReservations.begin() + j, reservation);
+                inserer = true;
+                break;
+            }
+        }
+
+        if (!inserer) {
+            // Si la nouvelle date est après toutes les dates existantes, ajouter à la fin
+            sousReservations.push_back(reservation);
+        }
+    }
+
     std::shared_ptr<GroupeReservation> groupeRes = std::dynamic_pointer_cast<GroupeReservation>(reservation);
     if (groupeRes) {
-        const string titre = groupeRes.get()->obtenirTitreReservation();
+        const string titre = groupeRes->obtenirTitreReservation();
         size_t pos = titre.find(' ');
         string firstWord = (pos == std::string::npos) ? titre : titre.substr(0, pos);
         string parentTitre = obtenirTitreReservation();
@@ -52,10 +86,9 @@ void GroupeReservation::ajouter(std::shared_ptr<Reservation> reservation) {
         string lastWord = (pos2 == std::string::npos) ? parentTitre : parentTitre.substr(pos2 + 1);
         if (firstWord == "Journee") cout << "      ";
         else if (firstWord == "Segment") cout << "   ";
-        cout << groupeRes.get()->obtenirTitreReservation() << " cree dans le " << obtenirTitreReservation();
+        cout << groupeRes->obtenirTitreReservation() << " cree dans le " << obtenirTitreReservation();
         //if (!(lastWord == obtenirNomTitulaire())) cout << " de " << obtenirNomTitulaire();
-        cout <<"!"<< endl;
-        
+        cout << "!" << endl;
     }
 }
 
@@ -85,16 +118,19 @@ void GroupeReservation::supprimer(const string& titre) {
     }
 }
 
-void GroupeReservation::afficherDetails() const {
-    cout << "Détails du groupe de réservations :" << endl;
-    cout << "Date de réservation : " << obtenirDateReservation() << endl;
-    cout << "Contact vendeur : " << obtenirContactVendeur() << endl;
-    cout << "Email vendeur : " << obtenirEmailVendeur() << endl;
-    cout << "Nombre de sous-réservations : " << sousReservations.size() << endl;
+string GroupeReservation::obtenirDetails() const {
+    string details = "";
+    const string titre = obtenirTitreReservation();
+    size_t pos = titre.find(' ');
+    string firstWord = (pos == std::string::npos) ? titre : titre.substr(0, pos);
+    if (firstWord == "Journee") details += "   ";
+    details += titre + "\n";
+    if (firstWord == "Segment") details = "";
 
     for (const auto& reservation : sousReservations) {
-        reservation->afficherDetails();
+       details += reservation->obtenirDetails();
     }
+    return details;
 }
 
 double GroupeReservation::obtenirCouts(const string& autredevise = "CAD", double taxe = 1.0) const {

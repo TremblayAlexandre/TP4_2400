@@ -11,9 +11,10 @@
 #include "Reservation.hpp"
 #include <vector>
 #include <memory>
+#include "Visiteur.hpp"
+
 
 using namespace std;
-
 class GroupeReservation : public Reservation {
 private:
     vector<shared_ptr<Reservation>> sousReservations; 
@@ -32,9 +33,15 @@ public:
 
     std::shared_ptr<Reservation> clone(const string& nouvNom) const override;
    
-    void afficherDetails() const override;
+    string obtenirDetails() const override;
     bool estGroupe() const override;       
     double obtenirCouts(const string& autredevise, double taxe) const override;
+
+
+    void accepter(Visiteur& visiteur)
+    {
+        visiteur.visiter(*this);
+    }
 
 };
 

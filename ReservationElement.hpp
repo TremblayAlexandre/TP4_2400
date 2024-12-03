@@ -25,7 +25,7 @@ public:
     virtual ~ReservationElement();
 
     double obtenirCouts(const string& autredevise, double taxe) const override;
-    void afficherDetails() const override; 
+    virtual string obtenirDetails() const override; 
     void ajouter(std::shared_ptr<Reservation> reservation) override;  // Non applicable pour une feuille
     void supprimer(const string& titre) override; // Non applicable pour une feuille
     Reservation* obtenirEnfant(int index) const override; // Non applicable pour une feuille

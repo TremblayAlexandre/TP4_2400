@@ -1,0 +1,29 @@
+Voyage de Diego
+   Journee 2024-10-26
+      Reservation Air Canada AC 870 2024-10-26, prix total ($ CA): 1127.
+   Journee 2024-10-27
+      Reservation Hotel Stella, prix total ($ CA): 403.
+   Journee 2024-10-28
+      Reservation Paris Diner-croisiere sur la Seine by Bateaux Mouches, prix total ($ CA): 184.
+      Reservation Hotel Stella, prix total ($ CA): 403.
+   Journee 2024-10-29
+      Reservation Air Europa 1026, prix total ($ CA): 100.
+      Reservation Far Home Atocha, prix total ($ CA): 330.
+   Journee 2024-10-30
+      Reservation Excursion d'une journee a Tolede (de Madrid), prix total ($ CA): 38.
+      Reservation Far Home Atocha, prix total ($ CA): 330.
+   Journee 2024-10-31
+      Reservation Air Europa 1025, prix total ($ CA): 100.
+         Commentaire: bob.
+         Reservation nom. 
+   Journee 2024-10-31
+      Reservation Hotel Stella, prix total ($ CA): 403.
+   Journee 2024-11-01
+      Reservation Visite guidee pour voir les chefs-d'oeuvre du musee du Louvre, prix total ($ CA): 107.
+      Reservation Hotel Stella, prix total ($ CA): 403.
+   Journee 2024-11-02
+      Reservation Visite guidee a Versailles et acces prioritaire avec transfert depuis l'hotel au depart de Paris, prix total ($ CA): 86.
+      Reservation Hotel Stella, prix total ($ CA): 403.
+   Journee 2024-11-03
+      Reservation Air Transat 111 2024-11-03, prix total ($ CA): 719.
+

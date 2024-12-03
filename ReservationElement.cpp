@@ -31,11 +31,12 @@ double ReservationElement::obtenirCouts(const string& autredevise = "CAD", doubl
     return offre->calculerPrixTotal(autredevise, taxe); 
 }
 
-void ReservationElement::afficherDetails() const {
-    cout << "Détails de la réservation élémentaire :" << endl;
-    cout << "Date de réservation : " << obtenirDateReservation() << endl;
-    cout << "Contact vendeur : " << obtenirContactVendeur() << endl;
-    cout << "Email vendeur : " << obtenirEmailVendeur() << endl;
+string ReservationElement::obtenirDetails() const {
+    string details = "      ";
+    details += "Reservation " + offre->obtenirNom();
+    details += +", prix total ($ CA): " + to_string(static_cast<int>(offre->obtenirPrix()));
+    details += ".\n";
+    return details;
 }
 
 void ReservationElement::ajouter(std::shared_ptr<Reservation> reservation) {
