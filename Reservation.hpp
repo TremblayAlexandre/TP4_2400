@@ -13,6 +13,7 @@
 #include <vector>
 #include <memory>
 
+
 class Visiteur;
 
 
@@ -20,9 +21,9 @@ using namespace std;
 class Reservation {
 private:
     string titreReservation = "";
-    string dateReservation;  
-    string contactVendeur;   
-    string emailVendeur;  
+    string dateReservation;
+    string contactVendeur;
+    string emailVendeur;
     string nomTitulaire;
     Reservation* parent = nullptr;
     bool aParent;
@@ -38,13 +39,13 @@ public:
     string obtenirContactVendeur() const;
     string obtenirEmailVendeur() const;
     string obtenirNomTitulaire() const;
-    string obtenirTitreReservation() const;
+    virtual string obtenirTitreReservation() const;
 
 
 
     virtual vector<shared_ptr<Reservation>> obtenirEnfants() const = 0;
     virtual double obtenirCouts(const string& autredevise = "CAD", double taxe = 1.0) const = 0;
-    virtual string obtenirDetails() const = 0;   
+    virtual string obtenirDetails() const = 0;
     virtual void ajouter(std::shared_ptr<Reservation> reservation) = 0;
     virtual void supprimer(const string& titre) = 0;
     virtual Reservation* obtenirEnfant(int index) const = 0;

@@ -10,6 +10,9 @@
 #include "BDPlanification.hpp"
 #include "GroupeReservation.hpp"
 #include "ReservationElement.hpp"
+#include "GestionnaireDecorateur.hpp"
+#include "VisiteurReservation.hpp"
+#include "VisiteurEcritureFichier.hpp"
 
 using namespace std;
 
@@ -20,7 +23,7 @@ string DIEGO_NOM = "Diego";
 string ALICIA_NOM = "Alicia";
 
 
-vector<unordered_map<string, string>> read_csv(const string &file_path) {
+vector<unordered_map<string, string>> read_csv(const string& file_path) {
     ifstream file(file_path);
 
     if (!file.is_open()) {
@@ -97,13 +100,13 @@ void reservationsScript(BDOReservation BDOR) {
             NOM_CONTACT, EMAIL_CONTACT);
         voyageDoraPtr->ajouter(segment1Dora);
         { // JOURNEE 1
-        shared_ptr<GroupeReservation> journee1Seg1 = make_shared<GroupeReservation>("Journee 2024-10-26", DORA_NOM, "2024-10-26",
-            NOM_CONTACT, EMAIL_CONTACT);
-        segment1Dora->ajouter(journee1Seg1);
-        shared_ptr<ProxyOffreReservation>  proxy1Jour1 = BDOR.trouverOffreParNom("Air Canada AC 870 2024-10-26")->reserver();
-        ReservationElement reserv1Jour1 = ReservationElement(DORA_NOM,
-            "2024-10-26", NOM_CONTACT, EMAIL_CONTACT, proxy1Jour1);
-        journee1Seg1->ajouter(make_shared<ReservationElement>(reserv1Jour1));
+            shared_ptr<GroupeReservation> journee1Seg1 = make_shared<GroupeReservation>("Journee 2024-10-26", DORA_NOM, "2024-10-26",
+                NOM_CONTACT, EMAIL_CONTACT);
+            segment1Dora->ajouter(journee1Seg1);
+            shared_ptr<ProxyOffreReservation>  proxy1Jour1 = BDOR.trouverOffreParNom("Air Canada AC 870 2024-10-26")->reserver();
+            ReservationElement reserv1Jour1 = ReservationElement(DORA_NOM,
+                "2024-10-26", NOM_CONTACT, EMAIL_CONTACT, proxy1Jour1);
+            journee1Seg1->ajouter(make_shared<ReservationElement>(reserv1Jour1));
         }
         { // JOURNEE 2 
             shared_ptr<GroupeReservation> journee2Seg1 = make_shared<GroupeReservation>("Journee 2024-10-27", DORA_NOM, "2024-10-27",
@@ -113,9 +116,8 @@ void reservationsScript(BDOReservation BDOR) {
             ReservationElement reserv1Jour2 = ReservationElement(DORA_NOM,
                 "2024-10-27", NOM_CONTACT, EMAIL_CONTACT, proxy1Jour2);
             journee2Seg1->ajouter(make_shared<ReservationElement>(reserv1Jour2));
-
         }
-        
+
         { // JOURNEE 3 DORA
             shared_ptr<GroupeReservation> journee3Seg1 = make_shared<GroupeReservation>("Journee 2024-10-28", DORA_NOM, "2024-10-28",
                 NOM_CONTACT, EMAIL_CONTACT);
@@ -130,7 +132,7 @@ void reservationsScript(BDOReservation BDOR) {
             journee3Seg1->ajouter(make_shared<ReservationElement>(reserv1Jour3));
             journee3Seg1->ajouter(make_shared<ReservationElement>(reserv2Jour3));
         }
-        
+
     }
     { // SEGMENT PORTUGAL
         shared_ptr<GroupeReservation> segment2Dora = make_shared<GroupeReservation>("Segment Portugal", DORA_NOM, "2024-10-29",
@@ -141,7 +143,7 @@ void reservationsScript(BDOReservation BDOR) {
                 NOM_CONTACT, EMAIL_CONTACT);
             segment2Dora->ajouter(journee1Seg2);
             shared_ptr<ProxyOffreReservation> proxy1Jour1 = BDOR.trouverOffreParNom(
-            "TAP Air Portugal TP 0441 2024-10-29")->reserver();
+                "TAP Air Portugal TP 0441 2024-10-29")->reserver();
             ReservationElement reserv1Jour1 = ReservationElement(DORA_NOM,
                 "2024-10-29", NOM_CONTACT, EMAIL_CONTACT, proxy1Jour1);
             shared_ptr<ProxyOffreReservation> proxy1Jour2 = make_shared<ProxyOffreReservation>(BDOR.trouverOffreParNom("Hotel Roma"));
@@ -163,8 +165,6 @@ void reservationsScript(BDOReservation BDOR) {
                 "2024-10-30", NOM_CONTACT, EMAIL_CONTACT, proxy2Jour2);
             journee2Seg2->ajouter(make_shared<ReservationElement>(reserv1Jour2));
             journee2Seg2->ajouter(make_shared<ReservationElement>(reserv2Jour2));
-
-
         }
         { // JOURNEE 3
             shared_ptr<GroupeReservation> journee3Seg2 = make_shared<GroupeReservation>("Journee 2024-10-31", DORA_NOM, "2024-10-31",
@@ -175,9 +175,7 @@ void reservationsScript(BDOReservation BDOR) {
             ReservationElement reserv1Jour3 = ReservationElement(DORA_NOM,
                 "2024-10-28", NOM_CONTACT, EMAIL_CONTACT, proxy1Jour3);
             journee3Seg2->ajouter(make_shared<ReservationElement>(reserv1Jour3));
-
         }
-
     }
     { // SEGMENT FRANCE 2
         shared_ptr<GroupeReservation> segment3Dora = make_shared<GroupeReservation>("Segment France 2e partie", DORA_NOM, "2024-10-31",
@@ -237,7 +235,7 @@ void reservationsScript(BDOReservation BDOR) {
     }
     cout << endl;
     shared_ptr<GroupeReservation> voyageDiegoPtr = make_shared<GroupeReservation>(*voyageDoraPtr, DIEGO_NOM);
-    
+
     voyageDiegoPtr->supprimer("Segment Portugal");
     { // SEGMENT FRANCE 1 DIEGO
         shared_ptr<GroupeReservation> segment1Diego = make_shared<GroupeReservation>("Segment Espagne", DIEGO_NOM, "2024-10-29",
@@ -276,13 +274,12 @@ void reservationsScript(BDOReservation BDOR) {
                 NOM_CONTACT, EMAIL_CONTACT);
             segment1Diego->ajouter(journee3Seg1);
             shared_ptr<ProxyOffreReservation>  proxy1Jour3 = BDOR.trouverOffreParNom("Air Europa 1025")->reserver();
-            ReservationElement reserv1Jour3 = ReservationElement(DIEGO_NOM,
+            shared_ptr<ReservationElement> reserv1Jour3 = make_shared<ReservationElement>(DIEGO_NOM,
                 "2024-10-31", NOM_CONTACT, EMAIL_CONTACT, proxy1Jour3);
-            journee3Seg1->ajouter(make_shared<ReservationElement>(reserv1Jour3));
-
+            journee3Seg1->ajouter(reserv1Jour3);
         }
     }
-    cout << endl;
+
     shared_ptr<GroupeReservation> voyageAliciaPtr = make_shared<GroupeReservation>(*voyageDiegoPtr, ALICIA_NOM);
 
     cout << endl;
@@ -296,6 +293,59 @@ void reservationsScript(BDOReservation BDOR) {
         cout << " ($ CA): ";
         cout << res.second->obtenirCouts() << endl;
     }
+    cout << endl;
+    cout << "=============================================================================" << endl;
+    cout << "===========================FIN TRAVAIL PRATIQUE 4============================" << endl;
+    cout << "=============================================================================" << endl;
+    cout << endl;
+
+    // =============================================================================
+    // ===========================FIN TRAVAIL PRATIQUE 4============================
+    // =============================================================================
+
+    GestionnaireDecorateur gestionnaireDecorateur;
+
+    shared_ptr<ReservationElement> res1 = voyageDiegoPtr->trouverReservation("Hotel Stella", "2024-10-27");
+    shared_ptr<ReservationElement> res2 = voyageDoraPtr->trouverReservation("Hotel Stella", "2024-10-27");
+    shared_ptr<ReservationElement> res3 = voyageAliciaPtr->trouverReservation("Hotel Stella", "2024-10-27");
+
+    res1 = gestionnaireDecorateur.ajouterDecorateur(res1, "Restaurant de l'hotel Stella","27 octobre 2024","19h");
+    res2 = gestionnaireDecorateur.ajouterDecorateur(res2, "Restaurant de l'hotel Stella", "27 octobre 2024", "19h");
+    res3 = gestionnaireDecorateur.ajouterDecorateur(res3, "Restaurant de l'hotel Stella", "27 octobre 2024", "19h");
+
+    voyageDiegoPtr->remplacerReservation("Hotel Stella", "2024-10-27", res1);
+    voyageDoraPtr->remplacerReservation("Hotel Stella", "2024-10-27", res2);
+    voyageAliciaPtr->remplacerReservation("Hotel Stella", "2024-10-27", res3);
+
+
+    shared_ptr<ReservationElement> res4 = voyageDiegoPtr->trouverReservation("Hotel Stella", "2024-10-31");
+    shared_ptr<ReservationElement> res5 = voyageDoraPtr->trouverReservation("Hotel Stella", "2024-10-31");
+    shared_ptr<ReservationElement> res6 = voyageAliciaPtr->trouverReservation("Hotel Stella", "2024-10-31");
+    res4 = gestionnaireDecorateur.ajouterDecorateur(res4, "Restaurant de l'hotel Stella", "31 octobre 2024", "19h");
+    res5 = gestionnaireDecorateur.ajouterDecorateur(res5, "Restaurant de l'hotel Stella", "31 octobre 2024", "19h");
+    res6 = gestionnaireDecorateur.ajouterDecorateur(res6, "Restaurant de l'hotel Stella", "31 octobre 2024", "19h");
+
+    res4 = gestionnaireDecorateur.ajouterDecorateur(res4, "Excellent service!");
+    res5 = gestionnaireDecorateur.ajouterDecorateur(res5, "Excellent service!");
+    res6 = gestionnaireDecorateur.ajouterDecorateur(res6, "Excellent service!");
+    voyageDiegoPtr->remplacerReservation("Hotel Stella", "2024-10-31", res4);
+    voyageDoraPtr->remplacerReservation("Hotel Stella", "2024-10-31", res5);
+    voyageAliciaPtr->remplacerReservation("Hotel Stella", "2024-10-31", res6);
+
+    res4 = gestionnaireDecorateur.enleverDecorateur(res4, "Restaurant de l'hotel Stella");
+    res5 = gestionnaireDecorateur.enleverDecorateur(res5, "Restaurant de l'hotel Stella");
+    res6 = gestionnaireDecorateur.enleverDecorateur(res6, "Restaurant de l'hotel Stella");
+    voyageDiegoPtr->remplacerReservation("Hotel Stella", "2024-10-31", res4);
+    voyageDoraPtr->remplacerReservation("Hotel Stella", "2024-10-31", res5);
+    voyageAliciaPtr->remplacerReservation("Hotel Stella", "2024-10-31", res6);
+
+    AffichageVisiteur affVisiteur;
+    EcritureFichierVisiteur ecritureVisiteur;
+    for (const auto& voyages : BDP.obtenirReservations()) {
+        std::dynamic_pointer_cast<GroupeReservation>(voyages.second)->accepter(affVisiteur);
+        std::dynamic_pointer_cast<GroupeReservation>(voyages.second)->accepter(ecritureVisiteur);
+    }
+
 }
 
 int main() {
@@ -304,25 +354,25 @@ int main() {
     vector<unordered_map<string, string>> hebergements = read_csv("OffresCSV/Hebergements.csv");
     vector<unordered_map<string, string>> excursions = read_csv("OffresCSV/Excursions.csv");
 
-        auto afficher_offres = [](const string &type, const vector<unordered_map<string, string>> &offres) {
+    auto afficher_offres = [](const string& type, const vector<unordered_map<string, string>>& offres) {
         cout << "==== " << type << " Offres ====" << endl;
-        for (const auto &offre : offres) {
-            for (const auto &pair : offre) {
+        for (const auto& offre : offres) {
+            for (const auto& pair : offre) {
                 cout << pair.first << ": " << pair.second << endl;
             }
             cout << "--------------------------" << endl;
         }
     };
 
-     //afficher offres for each category
-     //afficher_offres("Vols", vols);
-     //afficher_offres("Hebergements", hebergements);
-     //afficher_offres("Excursions", excursions);
+    //afficher offres for each category
+    //afficher_offres("Vols", vols);
+    //afficher_offres("Hebergements", hebergements);
+    //afficher_offres("Excursions", excursions);
 
     BDOReservation BDOR = BDOReservation();
 
-    FabriqueOffreVol fabVol = FabriqueOffreVol(); 
-    for(unordered_map<string, string> offre : vols){
+    FabriqueOffreVol fabVol = FabriqueOffreVol();
+    for (unordered_map<string, string> offre : vols) {
         shared_ptr<OffreVol> vol = fabVol.creerOffre(generateUUID(), offre);
         BDOR.ajouterOffre(vol);
     }

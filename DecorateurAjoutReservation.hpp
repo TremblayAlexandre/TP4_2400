@@ -25,7 +25,8 @@ public:
     std::string obtenirDetails() const override { 
         string details = base->obtenirDetails();
         details += "         ";
-        details += "Reservation " + nomReservation + ". \n";
+        details += "Reservation " + nomReservation + " pour le ";
+        details += date + " a " + heure +". \n";
         return details; };
 };
 

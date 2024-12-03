@@ -27,7 +27,8 @@ public:
         std::string nomFichier = "log" + nomTitulaire + ".txt";
 
         // Ouvrir le fichier en mode append (ajout) ou créer s'il n'existe pas
-        std::ofstream fichier(nomFichier, std::ios::out | std::ios::app);
+        std::ofstream fichier(nomFichier, std::ios::out | std::ios::trunc);
+
         if (!fichier) {
             throw std::runtime_error("Impossible d'ouvrir ou de créer le fichier : " + nomFichier);
         }

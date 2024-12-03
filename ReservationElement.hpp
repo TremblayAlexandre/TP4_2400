@@ -23,9 +23,11 @@ public:
     ReservationElement(const string& nom, const string& date, const string& contact, const string& email, shared_ptr<ProxyOffreReservation> offreAssociee);
 
     virtual ~ReservationElement();
+    string obtenirTitreReservation() const override;
+
 
     double obtenirCouts(const string& autredevise, double taxe) const override;
-    virtual string obtenirDetails() const override; 
+    virtual string obtenirDetails() const override;
     void ajouter(std::shared_ptr<Reservation> reservation) override;  // Non applicable pour une feuille
     void supprimer(const string& titre) override; // Non applicable pour une feuille
     Reservation* obtenirEnfant(int index) const override; // Non applicable pour une feuille

@@ -12,15 +12,16 @@
 #include "Reservation.hpp"
 #include "Visiteur.hpp"
 
+class ReservationElement;
 
 using namespace std;
 class GroupeReservation : public Reservation {
 private:
-    vector<shared_ptr<Reservation>> sousReservations; 
+    vector<shared_ptr<Reservation>> sousReservations;
 
 public:
     GroupeReservation(const string& titre, const string& nom, const string& date,
-        const string& contact, const string& email, const bool estRacine=false);
+        const string& contact, const string& email, const bool estRacine = false);
     GroupeReservation(const GroupeReservation& autre, const string& nom);
 
     virtual ~GroupeReservation();
@@ -31,11 +32,13 @@ public:
     vector<shared_ptr<Reservation>> obtenirEnfants() const override;
 
     std::shared_ptr<Reservation> clone(const string& nouvNom) const override;
-   
-    string obtenirDetails() const override;
-    bool estGroupe() const override;       
-    double obtenirCouts(const string& autredevise, double taxe) const override;
 
+    string obtenirDetails() const override;
+    bool estGroupe() const override;
+    double obtenirCouts(const string& autredevise, double taxe) const override;
+    shared_ptr<ReservationElement> trouverReservation(const std::string& titreRecherche, const std::string& dateRecherche);
+    bool remplacerReservation(const std::string& titreRecherche, const std::string& dateRecherche,
+        const std::shared_ptr<ReservationElement>& nouvelleReservation);
 
     void accepter(Visiteur& visiteur)
     {

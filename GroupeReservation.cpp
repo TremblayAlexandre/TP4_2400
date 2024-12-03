@@ -10,6 +10,7 @@
 #include <iostream>
 #include <algorithm>
 #include <typeinfo>
+#include "ReservationElement.hpp"
 
 using namespace std;
 
@@ -39,6 +40,58 @@ GroupeReservation::GroupeReservation(const GroupeReservation& autre, const strin
 }
 
 GroupeReservation::~GroupeReservation() {}
+
+std::shared_ptr<ReservationElement> GroupeReservation::trouverReservation(const std::string& titreRecherche, const std::string& dateRecherche) {
+    for (const auto& res : sousReservations) {
+        // Tente de caster en ReservationElement
+        std::shared_ptr<ReservationElement> feuille = std::dynamic_pointer_cast<ReservationElement>(res);
+        if (feuille) {
+            if (feuille->obtenirTitreReservation() == titreRecherche && feuille->obtenirDateReservation() == dateRecherche) {
+                return feuille;
+            }
+        }
+        else {
+            // Tente de caster en GroupeReservation et effectue la recherche récursivement
+            std::shared_ptr<GroupeReservation> groupe = std::dynamic_pointer_cast<GroupeReservation>(res);
+            if (groupe) {
+                std::shared_ptr<ReservationElement> resultat = groupe->trouverReservation(titreRecherche, dateRecherche);
+                if (resultat) {
+                    return resultat;
+                }
+            }
+        }
+    }
+    return nullptr; // Si non trouvé
+}
+
+bool GroupeReservation::remplacerReservation(
+    const std::string& titreRecherche,
+    const std::string& dateRecherche,
+    const std::shared_ptr<ReservationElement>& nouvelleReservation
+) {
+    for (auto& res : sousReservations) {
+        // Tente de caster en ReservationElement
+        std::shared_ptr<ReservationElement> feuille = std::dynamic_pointer_cast<ReservationElement>(res);
+        if (feuille) {
+            if (feuille->obtenirTitreReservation() == titreRecherche && feuille->obtenirDateReservation() == dateRecherche) {
+                // Remplacement de la réservation
+                res = nouvelleReservation;
+                return true;
+            }
+        }
+        else {
+            // Tente de caster en GroupeReservation et effectue la recherche récursivement
+            std::shared_ptr<GroupeReservation> groupe = std::dynamic_pointer_cast<GroupeReservation>(res);
+            if (groupe) {
+                if (groupe->remplacerReservation(titreRecherche, dateRecherche, nouvelleReservation)) {
+                    return true;
+                }
+            }
+        }
+    }
+    return false; // Si non trouvé
+}
+
 
 void GroupeReservation::ajouter(std::shared_ptr<Reservation> reservation) {
     if (sousReservations.empty()) {
@@ -91,9 +144,6 @@ void GroupeReservation::ajouter(std::shared_ptr<Reservation> reservation) {
         cout << "!" << endl;
     }
 }
-
-
-
 
 
 

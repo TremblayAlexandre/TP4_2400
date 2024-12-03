@@ -125,6 +125,12 @@
     <ClInclude Include="GestionnaireDecorateur.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="VisiteurEcritureFichier.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VisiteurReservation.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="offrescsv\Excursions.csv" />

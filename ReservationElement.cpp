@@ -27,6 +27,11 @@ ReservationElement::ReservationElement(const string& nom, const string& date, co
 ReservationElement::~ReservationElement() {
 }
 
+string ReservationElement::obtenirTitreReservation() const {
+    return offre->obtenirNom();
+};
+
+
 double ReservationElement::obtenirCouts(const string& autredevise = "CAD", double taxe = 1.0) const {
     return offre->calculerPrixTotal(autredevise, taxe); 
 }
