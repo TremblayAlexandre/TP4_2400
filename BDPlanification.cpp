@@ -8,7 +8,16 @@
 #include "BDPlanification.hpp"
 #include <iostream>
 
+BDPlanification* BDPlanification::instance = nullptr;
 
+
+BDPlanification* BDPlanification::getInstance(){
+    if (instance == nullptr) {
+        instance = new BDPlanification();
+    }
+    return instance;
+
+}
 
 void BDPlanification::ajouterReservation(shared_ptr<Reservation> reservation) {
     this->reservations[reservation->obtenirTitreReservation()] = reservation;

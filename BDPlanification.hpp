@@ -15,10 +15,16 @@
 
 class BDPlanification {
 private:
+    BDPlanification() = default;
+    static BDPlanification* instance;
     unordered_map<string, shared_ptr<Reservation>> reservations;
 
 public:
-    BDPlanification() {};
+    BDPlanification(const BDPlanification&) = delete;
+    BDPlanification& operator=(const BDPlanification&) = delete;
+    static BDPlanification* getInstance();
+    ~BDPlanification() = default;
+
     void ajouterReservation(shared_ptr<Reservation> reservation);
     unordered_map<string, shared_ptr<Reservation>> obtenirReservations() const;
     shared_ptr<Reservation> rechercherReservation(const string& name) const;

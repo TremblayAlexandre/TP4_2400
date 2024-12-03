@@ -23,12 +23,22 @@ void GestionnaireBDOR::retirerCommentaire(const string& nomOffre){
 	}
 }
 
-//void GestionnaireBDOR::appliquerRabais(double rabais, const string& nomOffre, duree){
-//	shared_ptr<Offre> offre = this->BDOR->trouverOffreParNom(nomOffre);
-//	if (offre) {
-//		offre->definirPrix(offre->obtenirPrix() - rabais);
-//	}
-//}
+void GestionnaireBDOR::appliquerRabais(const string& nomOffre, const string& nomRabais, double rabais, int nbJours){
+	shared_ptr<Offre> offre = this->BDOR->trouverOffreParNom(nomOffre);
+	if (offre) {
+		chrono::time_point<chrono::system_clock> dateFin = chrono::system_clock::now() + chrono::days(nbJours);
+		shared_ptr<ObservateurRabais> obs = make_shared<ObservateurRabais>(nomRabais, rabais, dateFin);
+		offre->ajouterObsRabais(obs);
+	}
+}
+
+void GestionnaireBDOR::retirerRabais(const string& nomOffre, const string& nomRabais) {
+	shared_ptr<Offre> offre = this->BDOR->trouverOffreParNom(nomOffre);
+	if (offre) { 
+		offre->retirerObsRabais(nomRabais);
+	}
+
+}
 
 void GestionnaireBDOR::ajusterPrixDeTypes(double facteur, const unordered_set<string> types) {
 	for (string type: types) {

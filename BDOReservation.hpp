@@ -18,11 +18,17 @@ using namespace std;
 //template <typename T, typename Offre>
 class BDOReservation{
 private:
+    BDOReservation() = default;
+    static BDOReservation* instance;
     unordered_map<string, unordered_map<string, shared_ptr<Offre>>> BD;
     static int nombreOffres;
 
 public:
-    BDOReservation();
+    BDOReservation(const BDOReservation&) = delete;
+    BDOReservation& operator=(const BDOReservation&) = delete;
+    static BDOReservation* getInstance();
+    ~BDOReservation() = default;
+
     void afficherOffres(const string& categorie="");
     void ajouterOffre(const shared_ptr<Offre>& offre);
     void ajouterCategorie(const string& categorie);

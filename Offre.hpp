@@ -9,7 +9,6 @@
 #pragma once
 
 #include <iostream>
-#include "Devise.hpp"
 #include "OffreAbstraite.hpp"
 #include "ProxyOffreReservation.hpp"
 #include "ObservateurRabais.hpp"
@@ -34,14 +33,14 @@ public:
     ~Offre(); 
     string obtenirNom()const override {return nom;};
     string obtenirType()const override {return type;};
-    string obtenirCommentaire()const  { return commentaire;};
+    string obtenirCommentaire()const override { return commentaire;};
     void definirCommentaire(const std::string& commentaire) { this->commentaire = commentaire; };
     virtual string obtenirDetails() const = 0;
     shared_ptr<Devise> obtenirDevise()const override {return devise;};
     double obtenirPrix()const override { return prix; };
     void definirPrix(double nouvPrix) { this->prix = nouvPrix; }
-    double calculerPrixTotal(const string& autredevise, double taxe) const override;
-    void ajouterObsRabais(const string& nom, shared_ptr<ObservateurRabais> obsRabais);
+    double calculerPrixTotal(const string& autredevise = "CAD", double taxe = 1.0) const override;
+    void ajouterObsRabais(shared_ptr<ObservateurRabais> obsRabais);
     void retirerObsRabais(const string& nom);
     
     shared_ptr<ProxyOffreReservation> reserver();

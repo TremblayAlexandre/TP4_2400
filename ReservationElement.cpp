@@ -39,8 +39,11 @@ double ReservationElement::obtenirCouts(const string& autredevise = "CAD", doubl
 string ReservationElement::obtenirDetails() const {
     string details = "      ";
     details += "Reservation " + offre->obtenirNom();
-    details += +", prix total ($ CA): " + to_string(static_cast<int>(offre->obtenirPrix()));
+    details += +", prix total ($ CA): " + to_string(static_cast<int>(round(offre->calculerPrixTotal())));
     details += ".\n";
+    if (offre->obtenirCommentaire().length() > 0) {
+    details += "        Commentaire: " + offre->obtenirCommentaire() + "\n";
+    }
     return details;
 }
 

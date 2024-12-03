@@ -1,5 +1,5 @@
 #include "ObservateurRabais.hpp"
 
-ObservateurRabais::ObservateurRabais(double rabais, double prixActuel, chrono::time_point<chrono::system_clock> dateFin) :
-	rabais(rabais), dateFin(dateFin) {
+ObservateurRabais::ObservateurRabais(const string& nomRabais, double rabais, chrono::time_point<chrono::system_clock> dateFin) :
+	nomRabais(nomRabais), rabais(rabais), dateFin(dateFin) {
 };

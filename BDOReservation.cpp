@@ -7,13 +7,20 @@
 
 #include "BDOReservation.hpp"
 
+BDOReservation* BDOReservation::instance = nullptr;
 int BDOReservation::nombreOffres = 0;
 
-BDOReservation::BDOReservation() {
-	cout << "Objet BDOR cree!" << endl;
-	ajouterCategorie("Transport");
-	ajouterCategorie("Hebergement");
-	ajouterCategorie("Excursion");
+
+BDOReservation* BDOReservation::getInstance() {
+	if (instance == nullptr) {
+		instance = new BDOReservation();
+		cout << "Objet BDOR cree!" << endl;
+		instance->ajouterCategorie("Transport");
+		instance->ajouterCategorie("Hebergement");
+		instance->ajouterCategorie("Excursion");
+	}
+	return instance;
+
 }
 
 void BDOReservation::afficherOffres(const string& categorie){

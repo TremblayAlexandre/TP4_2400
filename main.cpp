@@ -13,6 +13,7 @@
 #include "GestionnaireDecorateur.hpp"
 #include "VisiteurReservation.hpp"
 #include "VisiteurEcritureFichier.hpp"
+#include "GestionnaireBDOR.hpp"
 
 using namespace std;
 
@@ -90,8 +91,9 @@ string generateUUID() {
 }
 
 
-void reservationsScript(BDOReservation BDOR) {
-    BDPlanification BDP = BDPlanification();
+void reservationsScript(shared_ptr<BDOReservation> BDOR) {
+    BDPlanification* BDP = BDPlanification::getInstance();
+ 
     cout << endl; // Pour séparer de la section en haut
     shared_ptr<GroupeReservation> voyageDoraPtr = make_shared<GroupeReservation>(
         "Voyage de Dora", DORA_NOM, "2024-10-26", NOM_CONTACT, EMAIL_CONTACT, true);
@@ -103,7 +105,7 @@ void reservationsScript(BDOReservation BDOR) {
             shared_ptr<GroupeReservation> journee1Seg1 = make_shared<GroupeReservation>("Journee 2024-10-26", DORA_NOM, "2024-10-26",
                 NOM_CONTACT, EMAIL_CONTACT);
             segment1Dora->ajouter(journee1Seg1);
-            shared_ptr<ProxyOffreReservation>  proxy1Jour1 = BDOR.trouverOffreParNom("Air Canada AC 870 2024-10-26")->reserver();
+            shared_ptr<ProxyOffreReservation>  proxy1Jour1 = BDOR->trouverOffreParNom("Air Canada AC 870 2024-10-26")->reserver();
             ReservationElement reserv1Jour1 = ReservationElement(DORA_NOM,
                 "2024-10-26", NOM_CONTACT, EMAIL_CONTACT, proxy1Jour1);
             journee1Seg1->ajouter(make_shared<ReservationElement>(reserv1Jour1));
@@ -112,7 +114,7 @@ void reservationsScript(BDOReservation BDOR) {
             shared_ptr<GroupeReservation> journee2Seg1 = make_shared<GroupeReservation>("Journee 2024-10-27", DORA_NOM, "2024-10-27",
                 NOM_CONTACT, EMAIL_CONTACT);
             segment1Dora->ajouter(journee2Seg1);
-            shared_ptr<ProxyOffreReservation> proxy1Jour2 = BDOR.trouverOffreParNom("Hotel Stella")->reserver();
+            shared_ptr<ProxyOffreReservation> proxy1Jour2 = BDOR->trouverOffreParNom("Hotel Stella")->reserver();
             ReservationElement reserv1Jour2 = ReservationElement(DORA_NOM,
                 "2024-10-27", NOM_CONTACT, EMAIL_CONTACT, proxy1Jour2);
             journee2Seg1->ajouter(make_shared<ReservationElement>(reserv1Jour2));
@@ -122,9 +124,9 @@ void reservationsScript(BDOReservation BDOR) {
             shared_ptr<GroupeReservation> journee3Seg1 = make_shared<GroupeReservation>("Journee 2024-10-28", DORA_NOM, "2024-10-28",
                 NOM_CONTACT, EMAIL_CONTACT);
             segment1Dora->ajouter(journee3Seg1);
-            //cout << BDOR.trouverOffreParNom("Paris Diner-croisiere sur la Seine by Bateaux Mouches")->obtenirNom();
-            shared_ptr<ProxyOffreReservation> proxy1Jour3 = BDOR.trouverOffreParNom("Paris Diner-croisiere sur la Seine by Bateaux Mouches")->reserver();
-            shared_ptr<ProxyOffreReservation> proxy2Jour3 = BDOR.trouverOffreParNom("Hotel Stella")->reserver();
+            //cout << BDOR->trouverOffreParNom("Paris Diner-croisiere sur la Seine by Bateaux Mouches")->obtenirNom();
+            shared_ptr<ProxyOffreReservation> proxy1Jour3 = BDOR->trouverOffreParNom("Paris Diner-croisiere sur la Seine by Bateaux Mouches")->reserver();
+            shared_ptr<ProxyOffreReservation> proxy2Jour3 = BDOR->trouverOffreParNom("Hotel Stella")->reserver();
             ReservationElement reserv1Jour3 = ReservationElement(DORA_NOM,
                 "2024-10-28", NOM_CONTACT, EMAIL_CONTACT, proxy1Jour3);
             ReservationElement reserv2Jour3 = ReservationElement(DORA_NOM,
@@ -142,11 +144,11 @@ void reservationsScript(BDOReservation BDOR) {
             shared_ptr<GroupeReservation> journee1Seg2 = make_shared<GroupeReservation>("Journee 2024-10-29", DORA_NOM, "2024-10-29",
                 NOM_CONTACT, EMAIL_CONTACT);
             segment2Dora->ajouter(journee1Seg2);
-            shared_ptr<ProxyOffreReservation> proxy1Jour1 = BDOR.trouverOffreParNom(
+            shared_ptr<ProxyOffreReservation> proxy1Jour1 = BDOR->trouverOffreParNom(
                 "TAP Air Portugal TP 0441 2024-10-29")->reserver();
             ReservationElement reserv1Jour1 = ReservationElement(DORA_NOM,
                 "2024-10-29", NOM_CONTACT, EMAIL_CONTACT, proxy1Jour1);
-            shared_ptr<ProxyOffreReservation> proxy1Jour2 = make_shared<ProxyOffreReservation>(BDOR.trouverOffreParNom("Hotel Roma"));
+            shared_ptr<ProxyOffreReservation> proxy1Jour2 = make_shared<ProxyOffreReservation>(BDOR->trouverOffreParNom("Hotel Roma"));
             ReservationElement reserv2Jour1 = ReservationElement(DORA_NOM,
                 "2024-10-29", NOM_CONTACT, EMAIL_CONTACT, proxy1Jour2);
             journee1Seg2->ajouter(make_shared<ReservationElement>(reserv1Jour1));
@@ -157,10 +159,10 @@ void reservationsScript(BDOReservation BDOR) {
             shared_ptr<GroupeReservation> journee2Seg2 = make_shared<GroupeReservation>("Journee 2024-10-30", DORA_NOM, "2024-10-30",
                 NOM_CONTACT, EMAIL_CONTACT);
             segment2Dora->ajouter(journee2Seg2);
-            shared_ptr<ProxyOffreReservation> proxy1Jour2 = BDOR.trouverOffreParNom("Visite du Musee Calouste")->reserver();
+            shared_ptr<ProxyOffreReservation> proxy1Jour2 = BDOR->trouverOffreParNom("Visite du Musee Calouste")->reserver();
             ReservationElement reserv1Jour2 = ReservationElement(DORA_NOM,
                 "2024-10-30", NOM_CONTACT, EMAIL_CONTACT, proxy1Jour2);
-            shared_ptr<ProxyOffreReservation> proxy2Jour2 = BDOR.trouverOffreParNom("Hotel Roma")->reserver();
+            shared_ptr<ProxyOffreReservation> proxy2Jour2 = BDOR->trouverOffreParNom("Hotel Roma")->reserver();
             ReservationElement reserv2Jour2 = ReservationElement(DORA_NOM,
                 "2024-10-30", NOM_CONTACT, EMAIL_CONTACT, proxy2Jour2);
             journee2Seg2->ajouter(make_shared<ReservationElement>(reserv1Jour2));
@@ -170,8 +172,8 @@ void reservationsScript(BDOReservation BDOR) {
             shared_ptr<GroupeReservation> journee3Seg2 = make_shared<GroupeReservation>("Journee 2024-10-31", DORA_NOM, "2024-10-31",
                 NOM_CONTACT, EMAIL_CONTACT);
             segment2Dora->ajouter(journee3Seg2);
-            //cout << BDOR.trouverOffreParNom("Paris Diner-croisiere sur la Seine by Bateaux Mouches")->obtenirNom();
-            shared_ptr<ProxyOffreReservation> proxy1Jour3 = BDOR.trouverOffreParNom("easyJet 4592 2024-10-31")->reserver();
+            //cout << BDOR->trouverOffreParNom("Paris Diner-croisiere sur la Seine by Bateaux Mouches")->obtenirNom();
+            shared_ptr<ProxyOffreReservation> proxy1Jour3 = BDOR->trouverOffreParNom("easyJet 4592 2024-10-31")->reserver();
             ReservationElement reserv1Jour3 = ReservationElement(DORA_NOM,
                 "2024-10-28", NOM_CONTACT, EMAIL_CONTACT, proxy1Jour3);
             journee3Seg2->ajouter(make_shared<ReservationElement>(reserv1Jour3));
@@ -185,7 +187,7 @@ void reservationsScript(BDOReservation BDOR) {
             shared_ptr<GroupeReservation> journee1Seg3 = make_shared<GroupeReservation>("Journee 2024-10-31", DORA_NOM, "2024-10-31",
                 NOM_CONTACT, EMAIL_CONTACT);
             segment3Dora->ajouter(journee1Seg3);
-            shared_ptr<ProxyOffreReservation> proxy1Jour1 = BDOR.trouverOffreParNom("Hotel Stella")->reserver();
+            shared_ptr<ProxyOffreReservation> proxy1Jour1 = BDOR->trouverOffreParNom("Hotel Stella")->reserver();
             ReservationElement reserv1Jour1 = ReservationElement(DORA_NOM,
                 "2024-10-31", NOM_CONTACT, EMAIL_CONTACT, proxy1Jour1);
             journee1Seg3->ajouter(make_shared<ReservationElement>(reserv1Jour1));
@@ -195,10 +197,10 @@ void reservationsScript(BDOReservation BDOR) {
             shared_ptr<GroupeReservation> journee2Seg3 = make_shared<GroupeReservation>("Journee 2024-11-01", DORA_NOM, "2024-11-01",
                 NOM_CONTACT, EMAIL_CONTACT);
             segment3Dora->ajouter(journee2Seg3);
-            shared_ptr<ProxyOffreReservation> proxy1Jour2 = BDOR.trouverOffreParNom("Visite guidee pour voir les chefs")->reserver();
+            shared_ptr<ProxyOffreReservation> proxy1Jour2 = BDOR->trouverOffreParNom("Visite guidee pour voir les chefs")->reserver();
             ReservationElement reserv1Jour2 = ReservationElement(DORA_NOM,
                 "2024-11-01", NOM_CONTACT, EMAIL_CONTACT, proxy1Jour2);
-            shared_ptr<ProxyOffreReservation> proxy2Jour2 = BDOR.trouverOffreParNom("Hotel Stella")->reserver();
+            shared_ptr<ProxyOffreReservation> proxy2Jour2 = BDOR->trouverOffreParNom("Hotel Stella")->reserver();
             ReservationElement reserv2Jour2 = ReservationElement(DORA_NOM,
                 "2024-11-01", NOM_CONTACT, EMAIL_CONTACT, proxy2Jour2);
             journee2Seg3->ajouter(make_shared<ReservationElement>(reserv1Jour2));
@@ -210,9 +212,9 @@ void reservationsScript(BDOReservation BDOR) {
             shared_ptr<GroupeReservation> journee3Seg3 = make_shared<GroupeReservation>("Journee 2024-11-02", DORA_NOM, "2024-11-02",
                 NOM_CONTACT, EMAIL_CONTACT);
             segment3Dora->ajouter(journee3Seg3);
-            //cout << BDOR.trouverOffreParNom("Paris Diner-croisiere sur la Seine by Bateaux Mouches")->obtenirNom();
-            shared_ptr<ProxyOffreReservation> proxy1Jour3 = BDOR.trouverOffreParNom("Visite guidee a Versailles et")->reserver();
-            shared_ptr<ProxyOffreReservation> proxy2Jour3 = BDOR.trouverOffreParNom("Hotel Stella")->reserver();
+            //cout << BDOR->trouverOffreParNom("Paris Diner-croisiere sur la Seine by Bateaux Mouches")->obtenirNom();
+            shared_ptr<ProxyOffreReservation> proxy1Jour3 = BDOR->trouverOffreParNom("Visite guidee a Versailles et")->reserver();
+            shared_ptr<ProxyOffreReservation> proxy2Jour3 = BDOR->trouverOffreParNom("Hotel Stella")->reserver();
             ReservationElement reserv1Jour3 = ReservationElement(DORA_NOM,
                 "2024-11-02", NOM_CONTACT, EMAIL_CONTACT, proxy1Jour3);
             ReservationElement reserv2Jour3 = ReservationElement(DORA_NOM,
@@ -225,7 +227,7 @@ void reservationsScript(BDOReservation BDOR) {
             shared_ptr<GroupeReservation> journee4Seg3 = make_shared<GroupeReservation>("Journee 2024-11-03", DORA_NOM, "2024-11-03",
                 NOM_CONTACT, EMAIL_CONTACT);
             segment3Dora->ajouter(journee4Seg3);
-            shared_ptr<ProxyOffreReservation> proxy1Jour4 = BDOR.trouverOffreParNom("Air Transat 111 2024-11-03")->reserver();
+            shared_ptr<ProxyOffreReservation> proxy1Jour4 = BDOR->trouverOffreParNom("Air Transat 111 2024-11-03")->reserver();
             ReservationElement reserv1Jour4 = ReservationElement(DORA_NOM,
                 "2024-11-03", NOM_CONTACT, EMAIL_CONTACT, proxy1Jour4);
             journee4Seg3->ajouter(make_shared<ReservationElement>(reserv1Jour4));
@@ -245,10 +247,10 @@ void reservationsScript(BDOReservation BDOR) {
             shared_ptr<GroupeReservation> journee1Seg1 = make_shared<GroupeReservation>("Journee 2024-10-29", DIEGO_NOM, "2024-10-29",
                 NOM_CONTACT, EMAIL_CONTACT);
             segment1Diego->ajouter(journee1Seg1);
-            shared_ptr<ProxyOffreReservation>  proxy1Jour1 = BDOR.trouverOffreParNom("Air Europa 1026")->reserver();
+            shared_ptr<ProxyOffreReservation>  proxy1Jour1 = BDOR->trouverOffreParNom("Air Europa 1026")->reserver();
             ReservationElement reserv1Jour1 = ReservationElement(DIEGO_NOM,
                 "2024-10-29", NOM_CONTACT, EMAIL_CONTACT, proxy1Jour1);
-            shared_ptr<ProxyOffreReservation>  proxy2Jour1 = BDOR.trouverOffreParNom("Far Home Atocha")->reserver();
+            shared_ptr<ProxyOffreReservation>  proxy2Jour1 = BDOR->trouverOffreParNom("Far Home Atocha")->reserver();
             ReservationElement reserv2Jour1 = ReservationElement(DIEGO_NOM,
                 "2024-10-29", NOM_CONTACT, EMAIL_CONTACT, proxy2Jour1);
             journee1Seg1->ajouter(make_shared<ReservationElement>(reserv1Jour1));
@@ -259,10 +261,10 @@ void reservationsScript(BDOReservation BDOR) {
             shared_ptr<GroupeReservation> journee2Seg1 = make_shared<GroupeReservation>("Journee 2024-10-30", DIEGO_NOM, "2024-10-30",
                 NOM_CONTACT, EMAIL_CONTACT);
             segment1Diego->ajouter(journee2Seg1);
-            shared_ptr<ProxyOffreReservation>  proxy1Jour2 = BDOR.trouverOffreParNom("Excursion d'une journ")->reserver();
+            shared_ptr<ProxyOffreReservation>  proxy1Jour2 = BDOR->trouverOffreParNom("Excursion d'une journ")->reserver();
             ReservationElement reserv1Jour2 = ReservationElement(DIEGO_NOM,
                 "2024-10-30", NOM_CONTACT, EMAIL_CONTACT, proxy1Jour2);
-            shared_ptr<ProxyOffreReservation>  proxy2Jour2 = BDOR.trouverOffreParNom("Far Home Atocha")->reserver();
+            shared_ptr<ProxyOffreReservation>  proxy2Jour2 = BDOR->trouverOffreParNom("Far Home Atocha")->reserver();
             ReservationElement reserv2Jour2 = ReservationElement(DIEGO_NOM,
                 "2024-10-30", NOM_CONTACT, EMAIL_CONTACT, proxy2Jour2);
             journee2Seg1->ajouter(make_shared<ReservationElement>(reserv1Jour2));
@@ -273,7 +275,7 @@ void reservationsScript(BDOReservation BDOR) {
             shared_ptr<GroupeReservation> journee3Seg1 = make_shared<GroupeReservation>("Journee 2024-10-31", DIEGO_NOM, "2024-10-31",
                 NOM_CONTACT, EMAIL_CONTACT);
             segment1Diego->ajouter(journee3Seg1);
-            shared_ptr<ProxyOffreReservation>  proxy1Jour3 = BDOR.trouverOffreParNom("Air Europa 1025")->reserver();
+            shared_ptr<ProxyOffreReservation>  proxy1Jour3 = BDOR->trouverOffreParNom("Air Europa 1025")->reserver();
             shared_ptr<ReservationElement> reserv1Jour3 = make_shared<ReservationElement>(DIEGO_NOM,
                 "2024-10-31", NOM_CONTACT, EMAIL_CONTACT, proxy1Jour3);
             journee3Seg1->ajouter(reserv1Jour3);
@@ -284,10 +286,10 @@ void reservationsScript(BDOReservation BDOR) {
 
     cout << endl;
 
-    BDP.ajouterReservation(voyageDoraPtr);
-    BDP.ajouterReservation(voyageDiegoPtr);
-    BDP.ajouterReservation(voyageAliciaPtr);
-    for (const auto& res : BDP.obtenirReservations()) {
+    BDP->ajouterReservation(voyageDoraPtr);
+    BDP->ajouterReservation(voyageDiegoPtr);
+    BDP->ajouterReservation(voyageAliciaPtr);
+    for (const auto& res : BDP->obtenirReservations()) {
         cout << "Total des frais pour le ";
         cout << res.second->obtenirTitreReservation();
         cout << " ($ CA): ";
@@ -302,6 +304,14 @@ void reservationsScript(BDOReservation BDOR) {
     // =============================================================================
     // ===========================FIN TRAVAIL PRATIQUE 4============================
     // =============================================================================
+
+    //Rabais et Ajustement des prix
+    GestionnaireBDOR gesBDOR = GestionnaireBDOR(BDOR);
+
+    gesBDOR.attribuerCommentaire("Louvre", "Rabais de 5 dollars canadiens au Louvre pour les etudiants de Polytechnique Montreal!\n");
+    gesBDOR.appliquerRabais("Louvre", "5$ Poly", 5.0, 100);
+    gesBDOR.ajusterPrixDeTypes(1.03, { "Hebergement" });
+    gesBDOR.ajusterPrixSaufTypes(1.02, { "Hebergement" });
 
     GestionnaireDecorateur gestionnaireDecorateur;
 
@@ -341,11 +351,12 @@ void reservationsScript(BDOReservation BDOR) {
 
     AffichageVisiteur affVisiteur;
     EcritureFichierVisiteur ecritureVisiteur;
-    for (const auto& voyages : BDP.obtenirReservations()) {
+    for (const auto& voyages : BDP->obtenirReservations()) {
         std::dynamic_pointer_cast<GroupeReservation>(voyages.second)->accepter(affVisiteur);
         std::dynamic_pointer_cast<GroupeReservation>(voyages.second)->accepter(ecritureVisiteur);
     }
 
+    cout << "Total du nombre d'offres de réservations dans la BDOR: " << gesBDOR.obtenirNbOffres() << "."<<endl;
 }
 
 int main() {
@@ -354,40 +365,29 @@ int main() {
     vector<unordered_map<string, string>> hebergements = read_csv("OffresCSV/Hebergements.csv");
     vector<unordered_map<string, string>> excursions = read_csv("OffresCSV/Excursions.csv");
 
-    auto afficher_offres = [](const string& type, const vector<unordered_map<string, string>>& offres) {
-        cout << "==== " << type << " Offres ====" << endl;
-        for (const auto& offre : offres) {
-            for (const auto& pair : offre) {
-                cout << pair.first << ": " << pair.second << endl;
-            }
-            cout << "--------------------------" << endl;
-        }
-    };
+    BDOReservation* rawBDOR = BDOReservation::getInstance();
+    shared_ptr<BDOReservation> BDOR(rawBDOR);
 
-    //afficher offres for each category
-    //afficher_offres("Vols", vols);
-    //afficher_offres("Hebergements", hebergements);
-    //afficher_offres("Excursions", excursions);
-
-    BDOReservation BDOR = BDOReservation();
 
     FabriqueOffreVol fabVol = FabriqueOffreVol();
     for (unordered_map<string, string> offre : vols) {
         shared_ptr<OffreVol> vol = fabVol.creerOffre(generateUUID(), offre);
-        BDOR.ajouterOffre(vol);
+        BDOR->ajouterOffre(vol);
     }
     FabriqueOffreHebergement fabHeb = FabriqueOffreHebergement();
     for (unordered_map<string, string> offre : hebergements) {
         shared_ptr<OffreHebergement> hebergement = fabHeb.creerOffre(generateUUID(), offre);
-        BDOR.ajouterOffre(hebergement);
+        BDOR->ajouterOffre(hebergement);
     }
     FabriqueOffreExcursion fabExc = FabriqueOffreExcursion();
     for (unordered_map<string, string> offre : excursions) {
         shared_ptr<OffreExcursion> excursion = fabExc.creerOffre(generateUUID(), offre);
-        BDOR.ajouterOffre(excursion);
+        BDOR->ajouterOffre(excursion);
     }
 
+    // voir lignes 308 a 314 pour le gestionnaireBDOR, l'application du rabais & l'ajustement des prix selon l'inflation
     reservationsScript(BDOR);
+    
 
     return 0;
 }

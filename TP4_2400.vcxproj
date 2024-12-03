@@ -127,9 +127,11 @@
     <ClCompile Include="FabriqueOffreExcursion.cpp" />
     <ClCompile Include="FabriqueOffreHebergement.cpp" />
     <ClCompile Include="FabriqueOffreVol.cpp" />
+    <ClCompile Include="GestionnaireBDOR.cpp" />
     <ClCompile Include="GroupeReservation.cpp" />
     <ClCompile Include="Iterateur.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ObservateurRabais.cpp" />
     <ClCompile Include="Offre.cpp" />
     <ClCompile Include="OffreExcursion.cpp" />
     <ClCompile Include="OffreHebergement.cpp" />

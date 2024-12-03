@@ -39,13 +39,15 @@ shared_ptr<ProxyOffreReservation> Offre::reserver() {
 	return make_shared<ProxyOffreReservation>(shared_from_this());
 }
 
-void Offre::ajouterObsRabais(const string& nom, shared_ptr<ObservateurRabais> obsRabais) {
-	if (!rabais.contains(nom)) {
-		rabais[nom] = obsRabais;
+void Offre::ajouterObsRabais(shared_ptr<ObservateurRabais> obsRabais) {
+	if (!rabais.contains(obsRabais->obtenirNomRabais())) {
+		rabais[obsRabais->obtenirNomRabais()] = obsRabais;
 	}
+	this->prix -= obsRabais->obtenirRabais();
 }
 void Offre::retirerObsRabais(const string& nom) {
 	if (rabais.contains(nom)) {
 		rabais.erase(nom);
+		this->prix += rabais.at(nom)->obtenirRabais();
 	}
 }

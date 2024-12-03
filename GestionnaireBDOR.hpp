@@ -19,7 +19,8 @@ public:
 	GestionnaireBDOR(shared_ptr<BDOReservation> bdor);
 	void attribuerCommentaire(const string& nomOffre, const string& commentaire);
 	void retirerCommentaire(const string& nomOffre);
-	void appliquerRabais(double rabais, const string& nomOffre, int nb);
+	void appliquerRabais(const string& nomOffre, const string& nomRabais, double rabais, int nbJours);
+	void retirerRabais(const string& nomOffre, const string& nomRabais);
 	void ajusterPrixDeTypes(double facteur, const unordered_set<string> types );
 	void ajusterPrixSaufTypes(double facteur, const unordered_set<string> types = {});
 	int obtenirNbOffres();

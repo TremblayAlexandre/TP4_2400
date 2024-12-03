@@ -32,4 +32,8 @@ namespace std {
         return offre->obtenirNom();
     }
 
+    std::string ProxyOffreReservation::obtenirCommentaire() const {
+        return offre->obtenirCommentaire();
+    }
+
 } // namespace std

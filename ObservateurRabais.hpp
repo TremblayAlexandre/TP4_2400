@@ -14,12 +14,14 @@ using namespace std;
 
 class ObservateurRabais {
 private:
+	string nomRabais;
 	double rabais;
 	chrono::time_point<chrono::system_clock> dateFin;
 public:
-	ObservateurRabais(double rabais, double prixActuel, chrono::time_point<chrono::system_clock> dateFin);
+	ObservateurRabais(const string& nomRabais, double rabais, chrono::time_point<chrono::system_clock> dateFin);
 	bool estRabaisActif()const { return dateFin > chrono::system_clock::now(); };
 	double obtenirRabais() const{ return rabais; }
+	string obtenirNomRabais() const { return nomRabais; }
 	virtual ~ObservateurRabais() {};
 };
 

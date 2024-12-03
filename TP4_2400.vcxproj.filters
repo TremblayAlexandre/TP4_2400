@@ -63,6 +63,12 @@
     <ClCompile Include="ReservationElement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GestionnaireBDOR.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ObservateurRabais.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BDOReservation.hpp">
