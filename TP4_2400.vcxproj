@@ -150,9 +150,11 @@
     <ClInclude Include="FabriqueOffreExcursion.hpp" />
     <ClInclude Include="FabriqueOffreHebergement.hpp" />
     <ClInclude Include="FabriqueOffreVol.hpp" />
+    <ClInclude Include="GestionnaireBDOR.hpp" />
     <ClInclude Include="GestionnaireDecorateur.hpp" />
     <ClInclude Include="GroupeReservation.hpp" />
     <ClInclude Include="Iterateur.hpp" />
+    <ClInclude Include="ObservateurRabais.hpp" />
     <ClInclude Include="Offre.hpp" />
     <ClInclude Include="OffreAbstraite.hpp" />
     <ClInclude Include="OffreExcursion.hpp" />

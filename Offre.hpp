@@ -26,11 +26,12 @@ protected:
     double prixOriginal;
     std::string type;
     std::string commentaire = "";
-    unordered_map<string, shared_ptr<ObservateurRabais>> rabais;
+    unordered_map<string, shared_ptr<ObservateurRabais>> rabais; //pluriel
     
 public:
     Offre(std::shared_ptr<Devise> devise, const std::string& id, const std::string& nom, double prix, const std::string& type);
-    ~Offre(); 
+    ~Offre();
+
     string obtenirNom()const override {return nom;};
     string obtenirType()const override {return type;};
     string obtenirCommentaire()const override { return commentaire;};
@@ -40,6 +41,7 @@ public:
     double obtenirPrix()const override { return prix; };
     void definirPrix(double nouvPrix) { this->prix = nouvPrix; }
     double calculerPrixTotal(const string& autredevise = "CAD", double taxe = 1.0) const override;
+    
     void ajouterObsRabais(shared_ptr<ObservateurRabais> obsRabais);
     void retirerObsRabais(const string& nom);
     

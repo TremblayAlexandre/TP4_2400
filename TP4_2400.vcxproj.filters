@@ -137,6 +137,12 @@
     <ClInclude Include="VisiteurReservation.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GestionnaireBDOR.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ObservateurRabais.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="offrescsv\Excursions.csv" />
